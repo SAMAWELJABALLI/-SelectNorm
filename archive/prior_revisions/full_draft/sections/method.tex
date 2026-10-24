@@ -1,0 +1,85 @@
+\section{SelectNorm}
+\label{sec:method}
+
+\begin{figure*}[t]
+\centering
+\input{figures/architecture}
+\caption{SelectNorm. Top lane, inference: $f_\theta(x)$ and $T(x)$ always run, so their cost is sunk when $g$ is decided; the second pass $f_\theta(T(x))$ (dashed) is the only avoidable cost and runs only when the estimated benefit exceeds $\lambda\bar c$. Bottom lane, grey: estimators fitted offline for training or adaptation, with no inference cost beyond evaluating $\hat\pi,\hat\rho$.}
+\label{fig:arch}
+\end{figure*}
+
+\paragraph{Module A: conservative normalizer.}
+$T$ processes Latin-script tokens and leaves Arabic-script tokens, digits-only tokens, emoji and punctuation unchanged (\cref{alg:norm}).
+A token is first looked up in a lexicon of Arabizi$\to$CODA pairs built from 80\% of TArC \citep{gugliotta2022tarc}; unseen tokens fall back to Tunisian character rules (\textit{3}$\to$\ar{ع}, \textit{7}$\to$\ar{ح}, \textit{9}$\to$\ar{ق}, \textit{5}$\to$\ar{خ}, \textit{ch}$\to$\ar{ش}, word-initial vowels to alef, medial short vowels dropped).
+Three safeguards define $T_{\rm cons}$:
+(i) \emph{protection} of French and English tokens, decided from word frequencies against TArC evidence, with short or function-like tokens (\textit{la}, \textit{ma}, \textit{el}) read in the language of their sentence context;
+(ii) \emph{negation}: the Tunisian circumfix \textit{ma\ldots ch} is split as \ar{ما} + stem + \ar{ش} and frequent negators (\textit{mouch}, \textit{mech}) are mapped by a fixed list, so that the negation particle survives;
+(iii) \emph{non-lexical cues}: laughter (\textit{hhhh}, \textit{mdr}) is mapped to \ar{ههه} rather than transliterated letter by letter.
+Two weaker strategies serve as controls: $T_{\rm rule}$ (rules only) and $T_{\rm lex}$ (lexicon and rules, no safeguards).
+Every call returns token-level reliability metadata (lexicon hits, rule fallbacks, ambiguous characters, protected, negation and laughter tokens), which the router may read because it is computed before the second pass.
+
+\paragraph{Module B: benefit estimation.}
+The decision-point features $z$ form three groups:
+\emph{conf} (maximum probability, margin and entropy of the temperature-scaled $p_0$),
+\emph{script} (length, Latin share, digits used as letters, emoji and upper-case rates),
+and \emph{trel} (the normalizer metadata as rates per Latin token, and the share of changed tokens).
+$\hat\pi$ and $\hat\rho$ are logistic regressions on standardized $z$ (gradient boosting as ablation); $\hat\rho$ is fitted on the disagreements of the policy split only (\cref{alg:train}).
+
+\paragraph{Module C: cost-aware routing.}
+At inference (\cref{alg:infer}) the classifier runs once on $x$, the normalizer runs (both costs are sunk at the decision point), and $\hat B(z)=\hat\pi(z)(2\hat\rho(z)-1)$ is compared with a threshold: either $\lambda\bar c$, the Bayes threshold of \cref{eq:bayes}, or, as for every baseline, a threshold tuned for each $\lambda$ on the policy development split. No threshold is tuned on target data. The second pass runs only when $g=1$; its cost $\bar c$ is the only avoidable cost, and it is the only cost that enters the threshold. Reported costs count everything a system runs (\cref{sec:setup}).
+
+\paragraph{Complexity.}
+Let $C_f(n)$ be the cost of one encoder pass on $n$ subword tokens. $T$ is $O(n)$ with dictionary lookups; $\hat\pi,\hat\rho$ cost $O(|z|)$. Expected inference cost is $C_f+C_T+O(|z|)+\mathbb E[g]\,C_f$, of which only the last term is avoidable; training the router costs one pass of each view over the policy split and $O(N|z|)$ per logistic fit. Adaptation adds one offline pass of each view over unlabeled target text and $k$ annotations.
+
+\begin{algorithm}[t]
+\small
+\caption{Conservative normalization $T_{\rm cons}$}
+\label{alg:norm}
+\begin{algorithmic}[1]
+\Require sentence $x$, lexicon $\mathcal L$, rules $R$, frequency lists $F$
+\Ensure $T(x)$, metadata $m$
+\State $\tau\gets$ tokens of $x$; $\kappa\gets$ share of foreign tokens in $\tau$ by $F$ vs.\ $\mathcal L$
+\For{each Latin-script token $t\in\tau$}
+  \If{$t$ is laughter} emit \ar{ههه}
+  \ElsIf{$t$ is foreign (short: iff $\kappa>\nicefrac12$)} keep $t$
+  \ElsIf{$t$ is a listed negator} emit its fixed form
+  \ElsIf{$t\in\mathcal L$} emit $\mathcal L(t)$
+  \ElsIf{$t$ matches \textit{ma\ldots ch}} emit \ar{ما} $R(\text{stem})$\ar{ش}
+  \Else\ emit $R(t)$ and count ambiguous characters
+  \EndIf
+  \State update $m$ with the branch taken
+\EndFor
+\State \Return joined output, $m$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[t]
+\small
+\caption{Training (labels from the policy split only)}
+\label{alg:train}
+\begin{algorithmic}[1]
+\Require frozen $f$, normalizer $T$, policy split $\mathcal P=\{(x_i,y_i)\}$; optional unlabeled target set $\mathcal U$; optional $k$ labelled target disagreements $\mathcal K$
+\Ensure $\hat\pi$, $\hat\rho$ (and shift $\hat b$)
+\For{$x\in\mathcal P\cup\mathcal U$} compute $p_0,p_1$, $z$, $D$ \EndFor
+\State $\hat\rho\gets$ fit $P(W{=}1\mid z)$ on $\{i\in\mathcal P: D_i=1\}$ \Comment{needs $y$}
+\State $\hat\pi\gets$ fit $P(D{=}1\mid z)$ on $\mathcal P$, or on $\mathcal P\cup\mathcal U$ with equal total weight \Comment{label-free}
+\If{$\mathcal K\neq\emptyset$} \Comment{few-label shift (\cref{sec:formulation})}
+  \State $\hat b\gets\arg\max_b \sum_{i\in\mathcal K}\log\mathrm{Bern}\big(W_i;\,\sigma(r_i+b)\big)-\tfrac{b^2}{2}$, \ $r_i=\operatorname{logit}\hat\rho(z_i)$
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[t]
+\small
+\caption{Inference}
+\label{alg:infer}
+\begin{algorithmic}[1]
+\Require input $x$, $f$, $T$, $\hat\pi$, $\hat\rho$, $\lambda$, mean avoidable cost $\bar c$ of $f(T(x))$
+\Ensure label $\hat y$, action $g$, score $\hat B$
+\State $p_0\gets f(x)$; $(x',m)\gets T(x)$; $z\gets z(x,p_0,m)$
+\State $\hat B\gets\hat\pi(z)\,(2\hat\rho(z)-1)$; $g\gets\mathbf 1[\hat B>\lambda\bar c]$
+\If{$g=1$} $\hat y\gets\mathbf 1[f(x')>\nicefrac12]$ \Comment{second pass}
+\Else\ $\hat y\gets\mathbf 1[p_0>\nicefrac12]$ \EndIf
+\State \Return $\hat y,g,\hat B$
+\end{algorithmic}
+\end{algorithm}

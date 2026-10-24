@@ -1,0 +1,20 @@
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Variant & $S_3$ & $S_4$ & $S_5$ & $S_6$\\\midrule
+SelectNorm-adapt (full) & 81.3 & 66.9 & 69.8 & 53.7\\
+\quad -- target re-estimation of $\hat\pi$ & 81.3 & 67.0 & 70.0 & 53.7\\
+\quad Bayes threshold instead of tuned & 81.4 & 66.9 & 69.6 & 53.5\\
+\quad $2\hat\rho-1$ only (no $\hat\pi$) & 81.3 & 66.9 & 69.8 & 53.6\\
+\quad $\hat\pi$ only, tuned (label-free ranking) & 81.9 & 67.2 & 69.5 & 53.1\\
+\quad confidence features only & 82.0 & 67.2 & 69.4 & 53.0\\
+\quad -- confidence features & 81.5 & 66.9 & 69.6 & 53.6\\
+\quad -- script features & 81.6 & 67.1 & 69.8 & 53.4\\
+\quad -- normalizer reliability & 82.0 & 67.0 & 69.4 & 53.2\\
+\quad + embedding PCA & 82.0 & 67.2 & 70.9 & 53.8\\
+\quad gradient boosting & 82.0 & 67.1 & 69.6 & 53.1\\
+\quad $T_{\rm lex}$ (no safeguards) & 80.7 & 64.6 & 65.2 & 53.0\\
+\quad always $T_{\rm lex}$ & 77.8 & 61.8 & 63.2 & 47.9\\
+\quad $T_{\rm rule}$ & 76.7 & 61.8 & 61.4 & 53.3\\
+\quad always $T_{\rm rule}$ & 75.1 & 58.8 & 58.8 & 47.7\\
+\quad $T_{\rm cov}$ (unknown tokens kept Latin) & 75.0 & 65.7 & 70.8 & 54.1\\
+\quad always $T_{\rm cov}$ & 75.0 & 65.8 & 70.7 & 54.0\\
+\bottomrule\end{tabular}

@@ -1,0 +1,38 @@
+[
+ {
+  "set": "S3_tsac_lat",
+  "oracle_T": 90.01557245038131,
+  "best_single_view": 82.00828565792068,
+  "headroom_T": 8.007286792460633,
+  "headroom_noise": 8.274667882616992,
+  "headroom_noise_sd": 2.099080394212853,
+  "excess": -0.26738109015635914
+ },
+ {
+  "set": "S4_tunizi",
+  "oracle_T": 81.32036242926841,
+  "best_single_view": 67.23345588235294,
+  "headroom_T": 14.086906546915472,
+  "headroom_noise": 9.497825156703474,
+  "headroom_noise_sd": 2.288521866432266,
+  "excess": 4.589081390211998
+ },
+ {
+  "set": "S5_narabizi",
+  "oracle_T": 81.83272616590413,
+  "best_single_view": 69.40574114487158,
+  "headroom_T": 12.42698502103255,
+  "headroom_noise": 9.193022542549564,
+  "headroom_noise_sd": 2.443881625545033,
+  "excess": 3.2339624784829866
+ },
+ {
+  "set": "S6_myc_lat",
+  "oracle_T": 63.758479413567514,
+  "best_single_view": 54.056146357000515,
+  "headroom_T": 9.702333056567,
+  "headroom_noise": 5.0544374086285035,
+  "headroom_noise_sd": 0.6230524496419914,
+  "excess": 4.647895647938496
+ }
+]

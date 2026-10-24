@@ -1,0 +1,112 @@
+{
+ "backends": {
+  "enc_FacebookAI__xlm-roberta-base": {
+   "draws": 1000,
+   "labels_sampled": 97050,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_FacebookAI__xlm-roberta-base+syn": {
+   "draws": 1000,
+   "labels_sampled": 98650,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_UBC-NLP__MARBERTv2": {
+   "draws": 1000,
+   "labels_sampled": 98375,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_UBC-NLP__MARBERTv2+syn": {
+   "draws": 1000,
+   "labels_sampled": 97350,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_intfloat__multilingual-e5-base": {
+   "draws": 1000,
+   "labels_sampled": 98125,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_intfloat__multilingual-e5-base+syn": {
+   "draws": 1000,
+   "labels_sampled": 98175,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  },
+  "enc_sentence-transformers__LaBSE": {
+   "draws": 1000,
+   "labels_sampled": 99025,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 25
+   }
+  },
+  "enc_sentence-transformers__LaBSE+syn": {
+   "draws": 1000,
+   "labels_sampled": 97875,
+   "violations": {
+    "other_fold": 0,
+    "src_overlap": 0,
+    "text_overlap": 0,
+    "targeted_not_disagreement": 0,
+    "budget_short": 50
+   }
+  }
+ },
+ "logged_comparison": {
+  "enc_intfloat__multilingual-e5-base": {
+   "entries": 1000,
+   "mismatches": 0,
+   "missing": 0
+  }
+ },
+ "total_draws": 8000,
+ "total_violations": {
+  "other_fold": 0,
+  "src_overlap": 0,
+  "text_overlap": 0,
+  "targeted_not_disagreement": 0,
+  "budget_short": 375
+ },
+ "sn_targeted_minus_zero_shot": {
+  "min": -1.3985105632149128,
+  "max": 1.4905923199853532,
+  "mean": -0.006592015712587695
+ }
+}

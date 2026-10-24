@@ -1,0 +1,11 @@
+{
+  "encoders": [
+    {"id": "FacebookAI/xlm-roberta-base", "role": "multilingual MLM encoder", "pooling": "mean, last layer"},
+    {"id": "intfloat/multilingual-e5-base", "role": "multilingual sentence encoder", "pooling": "mean, 'query: ' prefix"},
+    {"id": "sentence-transformers/LaBSE", "role": "multilingual sentence encoder (translation-ranking)", "pooling": "mean, last layer"},
+    {"id": "UBC-NLP/MARBERTv2", "role": "dialectal-Arabic encoder (Arabic script)", "pooling": "mean, last layer"}
+  ],
+  "views": ["orig", "cons", "lex", "rule"],
+  "max_len": 128,
+  "batch": 32
+}

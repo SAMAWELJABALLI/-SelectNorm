@@ -1,0 +1,32 @@
+% Qualitative examples. Values copied from results/qualitative/examples_mE5.json (archived per-example exports,
+% re-checked against results/export/per_example and a rerun of T_cons). Provenance: docs/aciids2027/EXAMPLE_PROVENANCE.md
+\begin{table}[t]
+\centering
+\caption{Test sentences with archived predictions (mE5, $\lambda=0$, SelectNorm-adapt): $x$ above $\Tcons(x)$; gold $y$ (1 = positive); posteriors $p_0$, $p_1$; routing $g$ and prediction $\hat y$ for seeds 0--4. Sources: TSAC test-file line (LGPL-3.0); NArabizi \texttt{sent\_id} (UD release, CC BY-SA 4.0); MYC row of \texttt{DATA\_CLEANED.csv}, text withheld (no licence).}
+\label{tab:qualitative}
+\footnotesize\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}l p{6.65cm} c c c l@{}}
+\toprule
+Source, effect & Original $x$ / normalised $\Tcons(x)$ & $y$ & $p_0$ & $p_1$ & seeds 0--4\\
+\midrule
+TSAC neg.\ 796 & \textit{mech 5arej 3lik el role} & 0 & .565 & .127 & $g$ \texttt{11111}\\
+\quad help & \ar[0.8]{exAa} & & & & $\hat y$ \texttt{00000}\\
+\addlinespace[1pt]
+TSAC pos.\ 86 & \textit{Metrobi mouch kif ijale4 la5er} & 1 & .806 & .004 & $g$ \texttt{11111}\\
+\quad harm & \ar[0.8]{exAb} & & & & $\hat y$ \texttt{00000}\\
+\addlinespace[1pt]
+NArabizi 2 & \textit{salem 3alikoum inchalah le pondium et les midailes d'or} & 1 & .175 & .842 & $g$ \texttt{11111}\\
+\quad help & \ar[0.8]{exBa} & & & & $\hat y$ \texttt{11111}\\
+\addlinespace[1pt]
+NArabizi 4609 & \textit{oui le Maroc aktar jahiziya li had tasfiyat la 3ala lmostawa tandimi} & 1 & .519 & .088 & $g$ \texttt{11111}\\
+\quad harm & \ar[0.8]{exBb} & & & & $\hat y$ \texttt{00000}\\
+\addlinespace[1pt]
+MYC 9079 & [withheld] two \textit{ma\ldots ch} negations split as \ar[0.8]{ma}\,\ldots\,\ar[0.8]{shin}, & 1 & .645 & .250 & $g$ \texttt{00111}\\
+\quad harm (s2--4) & letter elongations squeezed, emoji kept & & & & $\hat y$ \texttt{11000}\\
+\addlinespace[1pt]
+MYC 14543 & [withheld] two Latin-script loanwords protected, & 1 & .480 & .302 & $g$ \texttt{00001}\\
+\quad both wrong & negated verb split, emoji kept & & & & $\hat y$ \texttt{00000}\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,16 @@
+{
+ "model": "intfloat/multilingual-e5-base",
+ "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+ "n_timed": 9000,
+ "intercept_s": 0.01964367083953925,
+ "per_token_s": 0.0003177320476718651,
+ "r2": 0.6837658116977352,
+ "median_s": 0.02554463400019813,
+ "threads": 4,
+ "cpu": "x86_64",
+ "torch": "2.14.1+cu130",
+ "updated": {
+  "enc_intfloat__multilingual-e5-base": "updated",
+  "enc_intfloat__multilingual-e5-base+syn": "updated"
+ }
+}

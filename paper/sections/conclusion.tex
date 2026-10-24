@@ -1,0 +1,11 @@
+\section{Conclusion}
+\label{sec:conclusion}
+We framed per-input normalisation of Arabizi for frozen encoders as a cost-aware choice between two views and factorised its expected benefit into disagreement and conditional advantage. Normalisation improves macro-F1 on Tunisian and Algerian Arabizi; on Moroccan text its effect depends on the encoder. SelectNorm performs on par with a direct-gain router but does not consistently exceed the better single view; because the first pass is sunk, routing saves compute only relative to running both views. Disagreement is moderately predictable from decision-point features, whereas the conditional advantage is weakly predictable with the features and linear estimators evaluated, also with target labels. The normaliser's safeguards matter more than the routing components. The results support corpus- and encoder-specific view selection in this frozen-encoder setting.
+
+\paragraph{Code and Reproducibility.}
+Code, the pre-registered protocol, logs, per-example predictions, figure data and pinned revisions are at \url{[GITHUB_REPOSITORY_URL]}; corpora are not redistributed. A script recomputes every test of Table~\ref{tab:main}. Quoted sentences come from the Universal Dependencies release of NArabizi~\cite{seddah2020narabizi} (CC BY-SA 4.0) and from TSAC~\cite{medhaffar2017tsac} (LGPL-3.0).
+
+\begin{credits}
+\subsubsection{\discintname}
+[To be confirmed by the authors.] The authors have no competing interests to declare that are relevant to the content of this article. Generative AI tools were used for language editing, LaTeX layout and figure scripts [to be completed by the authors].
+\end{credits}

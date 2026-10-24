@@ -1,0 +1,15 @@
+\section{Introduction}
+\label{sec:intro}
+
+North African social-media text is written in Arabic script, in Latin-script Arabizi with digits standing for Arabic consonants (\textit{3}\,=\,\ar{ain}, \textit{7}\,=\,\ar{hha}), and with French segments inside the same sentence. A classifier trained on Arabic-script data can be applied to Arabizi as it is or after transliteration, which helps when it recovers known words and harms when it garbles French segments, negation, names or another dialect's spelling. The choice is usually made once per dataset~\cite{muller2021unseen,moosa2023transliteration,artetxe2023revisiting}, although the better choice varies from input to input.
+
+We ask whether a frozen classifier can learn, without labels at inference time, \emph{for which inputs} normalisation pays off, and whether that decision transfers from Tunisian to Algerian and Moroccan Arabizi. Per-input benefit predictors exist: post-hoc deferral rules estimate the gain of a second stage~\cite{jitkrittum2023cascade}, and loss predictors select test-time transformations~\cite{kim2020learningloss}. They do not address how such a rule moves to a new dialect with scarce labels, nor which part of it fails.
+
+With binary labels, the expected benefit of normalising equals the probability that the two views disagree times the margin by which the normalised view wins when they do (Eq.~(\ref{eq:factor})). The first factor needs no labels; the second needs labels only on disagreements. The identity is elementary and underlies query-by-committee~\cite{seung1992qbc}; we use it as an analysis device that separates disagreement detection, conditional advantage estimation and a cost-aware decision, so that each can be measured. We ask whether per-input selection beats dataset-level choices and strong routers (RQ1) across corpora and dialects (RQ2), what it costs (RQ3), whether normalised predictions agree with predictions on human transliterations (RQ4), which sub-problem limits it (RQ5), and how much a few target labels help (RQ6). Our contributions are:
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=2pt]
+\item a disagreement-factorised analysis of selective normalisation, with a cost-aware Bayes rule that separates sunk from avoidable cost, built from standard tools (Sects.~\ref{sec:formulation}--\ref{sec:method});
+\item evidence, for four frozen encoders and three Maghrebi varieties, on how far the \emph{conditional advantage} of the normalised view can be predicted from decision-point features (Sect.~\ref{sec:mechanism});
+\item a pre-specified evaluation with timing-checked costs, corrected paired tests and mechanism intervals (Sects.~\ref{sec:setup}--\ref{sec:results});
+\item a conservative Arabizi normaliser with safeguards (not independently validated).
+\end{itemize}
+No learned router, SelectNorm included, consistently beats the better single view, and routing costs more than either view; disagreements are moderately predictable, but the winning view is only weakly predictable from the features and estimators tested, even in domain.

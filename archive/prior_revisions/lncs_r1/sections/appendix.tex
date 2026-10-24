@@ -1,0 +1,24 @@
+\section{Proofs}
+\label{app:proofs}
+
+\paragraph{Bayes rule and factorisation.}
+For fixed $z$, the conditional risk of $g(z)=a$ is $\mathbb E[e_a\mid z]+\lambda\,\mathbb E[c_0+c_T\mid z]+\lambda\bar c(z)\,a$; the middle term does not depend on $a$, so $a=1$ is strictly better iff $B(z)>\lambda\bar c(z)$, and pointwise minimisation minimises Eq.~(\ref{eq:risk}). If $D=0$, $e_0=e_1$; if $D=1$ and $y\in\{0,1\}$, $e_0=W$ and $e_1=1-W$. Hence $e_0-e_1=D(2W-1)$ and $B(z)=P(D{=}1\mid z)\big(2P(W{=}1\mid D{=}1,z)-1\big)$; for $K$ classes $e_0-e_1=D\big(\mathbf 1[\hat y_1{=}y]-\mathbf 1[\hat y_0{=}y]\big)$ gives $\pi(\rho_1-\rho_0)$. \qed
+
+\paragraph{Proposition~\ref{prop:regret}.}
+Where $\hat g(z)\neq g^\star(z)$, the conditional excess risk is $|B-\lambda\bar c|\le|\hat B-B|$, because $\hat B-\lambda\bar c$ and $B-\lambda\bar c$ differ in sign (or $\hat B=\lambda\bar c$). Hence $R(\hat g)-R(g^\star)\le\mathbb E|\hat B-B|$, and $\hat B-B=(\hat\pi-\pi)(2\rho-1)+2\hat\pi(\hat\rho-\rho)$ with the triangle inequality concludes. \qed
+
+\paragraph{Proposition~\ref{prop:efficiency}.}
+With $q_i=\sigma(\operatorname{logit}\hat\rho(z_i)+b)$, a labelled target example contributes the log-likelihood $D_i[W_i\log q_i+(1-W_i)\log(1-q_i)]$ (if $D_i=0$, $e_0=e_1$ whatever $y_i$), hence Fisher information $D_i\,q_i(1-q_i)$ about $b$. Its expectation is $P_Q(D{=}1)\,\mathbb E_Q[q(1-q)\mid D{=}1]$ under random sampling and $\mathbb E_Q[q(1-q)\mid D{=}1]$ among disagreements (sampled without labels, as $D$ is observable); information adds over draws. \qed
+
+\section{Disagreement--Advantage Diagnostic Map}
+\label{app:diagmap}
+\begin{figure}[H]
+\begin{minipage}[c]{0.47\textwidth}
+\input{figures/diagnostic_map}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\textwidth}
+\Description{Scatter plot with one point per encoder and test corpus. The x-axis is the AUC of the disagreement estimator, between 0.62 and 0.74 for all points; the y-axis is the AUC of the conditional advantage estimator, mostly between 0.54 and 0.71, with two XLM-R points near 0.44. Dashed lines mark chance at 0.5 on both axes, and a dotted diagonal marks equal AUC. Fourteen of sixteen points lie below the diagonal.}
+\caption{Disagreement--advantage diagnostic map (data of Table~\ref{tab:mechanism}; bars: 95\% intervals). Marker: \ref{dm:mE5}\,mE5, \ref{dm:XLMR}\,XLM-R, \ref{dm:LaBSE}\,LaBSE, \ref{dm:MARBERTv2}\,MARBERTv2; fill: \ref{dm:S3}\,$S_3$, \ref{dm:S4}\,$S_4$, \ref{dm:S5}\,$S_5$, \ref{dm:S6}\,$S_6$. $x$: AUC of target-cross-fitted $\hat\pi$ (M1); $y$: AUC of source $\hat\rho$ (M2); dashed: chance; dotted: equal AUC. 14 of 16 points lie below the diagonal; the two near 0.44 are XLM-R on $S_5$ and $S_6$. Linear estimators on $z$ only.}
+\label{fig:diagmap}
+\end{minipage}
+\end{figure}

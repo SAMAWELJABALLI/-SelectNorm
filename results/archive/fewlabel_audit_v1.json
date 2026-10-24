@@ -1,0 +1,9 @@
+{
+ "label_draws_checked": 1000,
+ "violations": 0,
+ "sn_targeted_minus_zero_shot": {
+  "min": -1.3985105632149128,
+  "max": 1.4905923199853532,
+  "mean": -0.006592015712587695
+ }
+}

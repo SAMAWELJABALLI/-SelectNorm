@@ -1,0 +1,96 @@
+S3_tsac_lat disagree=0.344 win_rate=0.767 auc_pi_src=0.677 auc_pi_tgt=0.682 auc_rho_src=0.659 auc_rho_tgt_ceiling=0.637 rho_calib_gap=0.032 f1_best_view=82.008 f1_bayes_src=81.406 f1_bayes_tgt_ceiling=82.014 f1_oracle=90.016 noise_headroom=8.275 excess_headroom=-0.267
+S4_tunizi disagree=0.327 win_rate=0.572 auc_pi_src=0.625 auc_pi_tgt=0.640 auc_rho_src=0.561 auc_rho_tgt_ceiling=0.581 rho_calib_gap=0.186 f1_best_view=67.233 f1_bayes_src=66.932 f1_bayes_tgt_ceiling=67.125 f1_oracle=81.320 noise_headroom=9.498 excess_headroom=4.589
+S5_narabizi disagree=0.292 win_rate=0.582 auc_pi_src=0.640 auc_pi_tgt=0.617 auc_rho_src=0.631 auc_rho_tgt_ceiling=0.569 rho_calib_gap=0.147 f1_best_view=69.406 f1_bayes_src=69.565 f1_bayes_tgt_ceiling=70.071 f1_oracle=81.833 noise_headroom=9.193 excess_headroom=3.234
+S6_myc_lat disagree=0.206 win_rate=0.472 auc_pi_src=0.673 auc_pi_tgt=0.743 auc_rho_src=0.537 auc_rho_tgt_ceiling=0.559 rho_calib_gap=0.202 f1_best_view=54.056 f1_bayes_src=53.541 f1_bayes_tgt_ceiling=54.211 f1_oracle=63.758 noise_headroom=5.054 excess_headroom=4.648
+S3_tsac_lat disagree=0.364 win_rate=0.716 auc_pi_src=0.656 auc_pi_tgt=0.640 auc_rho_src=0.712 auc_rho_tgt_ceiling=0.682 rho_calib_gap=0.028 f1_best_view=72.830 f1_bayes_src=73.851 f1_bayes_tgt_ceiling=73.614 f1_oracle=83.149 noise_headroom=4.466 excess_headroom=5.853
+S4_tunizi disagree=0.311 win_rate=0.642 auc_pi_src=0.651 auc_pi_tgt=0.663 auc_rho_src=0.566 auc_rho_tgt_ceiling=0.572 rho_calib_gap=0.113 f1_best_view=64.502 f1_bayes_src=64.050 f1_bayes_tgt_ceiling=64.800 f1_oracle=75.183 noise_headroom=3.112 excess_headroom=7.570
+S5_narabizi disagree=0.233 win_rate=0.694 auc_pi_src=0.702 auc_pi_tgt=0.694 auc_rho_src=0.445 auc_rho_tgt_ceiling=0.596 rho_calib_gap=0.110 f1_best_view=63.129 f1_bayes_src=63.420 f1_bayes_tgt_ceiling=62.479 f1_oracle=70.427 noise_headroom=5.222 excess_headroom=2.075
+S6_myc_lat disagree=0.278 win_rate=0.692 auc_pi_src=0.605 auc_pi_tgt=0.719 auc_rho_src=0.443 auc_rho_tgt_ceiling=0.664 rho_calib_gap=-0.080 f1_best_view=72.251 f1_bayes_src=68.985 f1_bayes_tgt_ceiling=73.387 f1_oracle=82.055 noise_headroom=5.284 excess_headroom=4.520
+S3_tsac_lat disagree=0.298 win_rate=0.734 auc_pi_src=0.700 auc_pi_tgt=0.689 auc_rho_src=0.607 auc_rho_tgt_ceiling=0.535 rho_calib_gap=-0.005 f1_best_view=83.620 f1_bayes_src=83.720 f1_bayes_tgt_ceiling=83.481 f1_oracle=91.549 noise_headroom=6.626 excess_headroom=1.303
+S4_tunizi disagree=0.339 win_rate=0.623 auc_pi_src=0.657 auc_pi_tgt=0.652 auc_rho_src=0.574 auc_rho_tgt_ceiling=0.587 rho_calib_gap=0.059 f1_best_view=69.132 f1_bayes_src=68.765 f1_bayes_tgt_ceiling=68.683 f1_oracle=82.176 noise_headroom=7.319 excess_headroom=5.725
+S5_narabizi disagree=0.343 win_rate=0.580 auc_pi_src=0.653 auc_pi_tgt=0.651 auc_rho_src=0.592 auc_rho_tgt_ceiling=0.551 rho_calib_gap=0.034 f1_best_view=70.867 f1_bayes_src=71.270 f1_bayes_tgt_ceiling=71.029 f1_oracle=85.729 noise_headroom=7.334 excess_headroom=7.529
+S6_myc_lat disagree=0.309 win_rate=0.327 auc_pi_src=0.663 auc_pi_tgt=0.684 auc_rho_src=0.568 auc_rho_tgt_ceiling=0.644 rho_calib_gap=0.159 f1_best_view=63.426 f1_bayes_src=60.829 f1_bayes_tgt_ceiling=64.180 f1_oracle=75.245 noise_headroom=6.529 excess_headroom=5.290
+S3_tsac_lat disagree=0.387 win_rate=0.703 auc_pi_src=0.700 auc_pi_tgt=0.690 auc_rho_src=0.635 auc_rho_tgt_ceiling=0.604 rho_calib_gap=0.014 f1_best_view=82.105 f1_bayes_src=82.199 f1_bayes_tgt_ceiling=81.812 f1_oracle=93.564 noise_headroom=10.687 excess_headroom=0.771
+S4_tunizi disagree=0.370 win_rate=0.595 auc_pi_src=0.700 auc_pi_tgt=0.715 auc_rho_src=0.613 auc_rho_tgt_ceiling=0.642 rho_calib_gap=0.129 f1_best_view=67.713 f1_bayes_src=68.137 f1_bayes_tgt_ceiling=70.470 f1_oracle=84.200 noise_headroom=14.452 excess_headroom=2.035
+S5_narabizi disagree=0.306 win_rate=0.570 auc_pi_src=0.679 auc_pi_tgt=0.733 auc_rho_src=0.625 auc_rho_tgt_ceiling=0.543 rho_calib_gap=0.133 f1_best_view=62.295 f1_bayes_src=62.520 f1_bayes_tgt_ceiling=63.348 f1_oracle=77.643 noise_headroom=11.726 excess_headroom=3.621
+S6_myc_lat disagree=0.298 win_rate=0.589 auc_pi_src=0.665 auc_pi_tgt=0.707 auc_rho_src=0.552 auc_rho_tgt_ceiling=0.627 rho_calib_gap=0.044 f1_best_view=58.258 f1_bayes_src=57.918 f1_bayes_tgt_ceiling=59.348 f1_oracle=70.353 noise_headroom=12.813 excess_headroom=-0.718
+multilingual-e5-base boot S3_tsac_lat 8.79 -0.78
+multilingual-e5-base boot S4_tunizi 8.86 5.22
+multilingual-e5-base boot S5_narabizi 9.12 3.3
+multilingual-e5-base boot S6_myc_lat 6.13 3.57
+multilingual-e5-base sub80 S3_tsac_lat 3.84 4.16
+multilingual-e5-base sub80 S4_tunizi 3.97 10.11
+multilingual-e5-base sub80 S5_narabizi 3.91 8.52
+multilingual-e5-base sub80 S6_myc_lat 2.91 6.79
+multilingual-e5-base sub50 S3_tsac_lat 6.75 1.25
+multilingual-e5-base sub50 S4_tunizi 6.52 7.56
+multilingual-e5-base sub50 S5_narabizi 6.73 5.7
+multilingual-e5-base sub50 S6_myc_lat 4.81 4.89
+multilingual-e5-base boot_Cx3 S3_tsac_lat 9.95 -1.94
+multilingual-e5-base boot_Cx3 S4_tunizi 10.16 3.93
+multilingual-e5-base boot_Cx3 S5_narabizi 10.89 1.54
+multilingual-e5-base boot_Cx3 S6_myc_lat 7.97 1.73
+multilingual-e5-base boot_C/3 S3_tsac_lat 6.22 1.78
+multilingual-e5-base boot_C/3 S4_tunizi 6.37 7.71
+multilingual-e5-base boot_C/3 S5_narabizi 7.28 5.15
+multilingual-e5-base boot_C/3 S6_myc_lat 4.2 5.5
+xlm-roberta-base boot S3_tsac_lat 3.9 6.42
+xlm-roberta-base boot S4_tunizi 3.39 7.29
+xlm-roberta-base boot S5_narabizi 3.67 3.63
+xlm-roberta-base boot S6_myc_lat 5.09 4.71
+xlm-roberta-base sub80 S3_tsac_lat 2.17 8.15
+xlm-roberta-base sub80 S4_tunizi 2.07 8.61
+xlm-roberta-base sub80 S5_narabizi 2.14 5.15
+xlm-roberta-base sub80 S6_myc_lat 3.03 6.77
+xlm-roberta-base sub50 S3_tsac_lat 3.03 7.29
+xlm-roberta-base sub50 S4_tunizi 2.42 8.27
+xlm-roberta-base sub50 S5_narabizi 1.73 5.57
+xlm-roberta-base sub50 S6_myc_lat 3.64 6.17
+xlm-roberta-base boot_Cx3 S3_tsac_lat 5.58 4.73
+xlm-roberta-base boot_Cx3 S4_tunizi 5.64 5.04
+xlm-roberta-base boot_Cx3 S5_narabizi 7.19 0.11
+xlm-roberta-base boot_Cx3 S6_myc_lat 5.07 4.73
+xlm-roberta-base boot_C/3 S3_tsac_lat 3.2 7.12
+xlm-roberta-base boot_C/3 S4_tunizi 2.53 8.15
+xlm-roberta-base boot_C/3 S5_narabizi 1.99 5.31
+xlm-roberta-base boot_C/3 S6_myc_lat 4.15 5.65
+LaBSE boot S3_tsac_lat 6.72 1.21
+LaBSE boot S4_tunizi 7.05 6.0
+LaBSE boot S5_narabizi 7.36 7.5
+LaBSE boot S6_myc_lat 6.61 5.21
+LaBSE sub80 S3_tsac_lat 3.38 4.55
+LaBSE sub80 S4_tunizi 3.57 9.47
+LaBSE sub80 S5_narabizi 3.86 11.01
+LaBSE sub80 S6_myc_lat 3.29 8.53
+LaBSE sub50 S3_tsac_lat 6.63 1.3
+LaBSE sub50 S4_tunizi 6.97 6.07
+LaBSE sub50 S5_narabizi 6.84 8.03
+LaBSE sub50 S6_myc_lat 6.06 5.76
+LaBSE boot_Cx3 S3_tsac_lat 7.16 0.77
+LaBSE boot_Cx3 S4_tunizi 7.72 5.32
+LaBSE boot_Cx3 S5_narabizi 8.6 6.27
+LaBSE boot_Cx3 S6_myc_lat 7.64 4.18
+LaBSE boot_C/3 S3_tsac_lat 5.81 2.12
+LaBSE boot_C/3 S4_tunizi 6.02 7.02
+LaBSE boot_C/3 S5_narabizi 6.15 8.71
+LaBSE boot_C/3 S6_myc_lat 5.41 6.41
+MARBERTv2 boot S3_tsac_lat 11.61 -0.16
+MARBERTv2 boot S4_tunizi 13.24 3.25
+MARBERTv2 boot S5_narabizi 15.33 0.01
+MARBERTv2 boot S6_myc_lat 10.6 1.49
+MARBERTv2 sub80 S3_tsac_lat 5.5 5.96
+MARBERTv2 sub80 S4_tunizi 5.63 10.86
+MARBERTv2 sub80 S5_narabizi 6.34 9.0
+MARBERTv2 sub80 S6_myc_lat 4.67 7.43
+MARBERTv2 sub50 S3_tsac_lat 10.59 0.87
+MARBERTv2 sub50 S4_tunizi 11.38 5.11
+MARBERTv2 sub50 S5_narabizi 14.48 0.86
+MARBERTv2 sub50 S6_myc_lat 9.4 2.7
+MARBERTv2 boot_Cx3 S3_tsac_lat 14.78 -3.32
+MARBERTv2 boot_Cx3 S4_tunizi 18.19 -1.71
+MARBERTv2 boot_Cx3 S5_narabizi 21.85 -6.51
+MARBERTv2 boot_Cx3 S6_myc_lat 15.28 -3.19
+MARBERTv2 boot_C/3 S3_tsac_lat 9.13 2.33
+MARBERTv2 boot_C/3 S4_tunizi 9.56 6.93
+MARBERTv2 boot_C/3 S5_narabizi 11.29 4.06
+MARBERTv2 boot_C/3 S6_myc_lat 8.2 3.9

@@ -1,0 +1,48 @@
+% SelectNorm pipeline (vector, TikZ, grayscale). Upper lane: inference; lower lane: offline estimation.
+% Solid boxes always run; the dashed box runs only when g = 1; grey boxes are fitted offline.
+\begin{tikzpicture}[
+  x=0.96cm, font=\scriptsize,
+  box/.style={draw, rounded corners=1.5pt, align=center, minimum height=8.8mm, inner sep=2pt, fill=white},
+  off/.style={box, fill=black!8, draw=black!50, minimum height=8mm},
+  arr/.style={-{Stealth[length=1.5mm]}, semithick},
+  offarr/.style={arr, black!55},
+  lbl/.style={fill=white, inner sep=0.8pt}]
+% ---------------- inference lane ----------------
+\node[box, minimum width=9mm] (x) at (0,0) {$x$\\Arabizi\\input};
+\node[box, minimum width=17mm] (f0) at (1.75,0) {$f_\theta(x)$\\first pass\\\itshape sunk $c_0$};
+\node[box, minimum width=17mm] (T) at (1.75,-1.3) {$T_{\rm cons}(x)$, $m$\\normaliser, metadata\\\itshape sunk $c_T$};
+\node[box, minimum width=17mm] (z) at (4.05,0) {$z=z(x,p_0,m)$\\decision features\\conf, script, trel};
+\node[box, minimum width=19mm] (B) at (6.4,0) {$\hat B=\hat\pi\,(2\hat\rho-1)$\\factorised benefit};
+\node[box, minimum width=17mm] (g) at (8.75,0) {$g=\mathbf 1[\hat B>t_\lambda]$\\cost-aware routing};
+\node[box, minimum width=14mm] (y) at (11.05,0) {$\hat y$\\final\\prediction};
+\node[box, dashed, minimum width=14mm] (f1) at (11.05,-1.3) {$f_\theta(T(x))$\\optional 2nd pass\\\itshape avoidable $c_1$};
+\draw[arr] (x) -- (f0);
+\draw[arr] (x.south) |- (T.west);
+\draw[arr] (f0) -- node[lbl, above=1pt]{$p_0$} (z);
+\draw[arr] (T.east) -| node[lbl, pos=.3, above=1pt]{$m$} (z.south);
+\draw[arr] (z) -- (B);
+\draw[arr] (B) -- (g);
+\draw[arr] (g) -- node[lbl, above=1pt]{$\hat y_0$} node[lbl, below=1pt]{$g{=}0$} (y);
+\draw[arr, dashed] ($(g.south)+(0.65,0)$) |- node[lbl, pos=.78, below=1pt]{$g{=}1$} (f1.west);
+\draw[arr, dashed] (f1) -- node[lbl, right=1pt]{$\hat y_1$} (y);
+% ---------------- lane separator ----------------
+\draw[black!40, densely dotted, thick] (-0.5,-2.15) -- (11.85,-2.15);
+\node[anchor=south west, font=\scriptsize\itshape, text=black!60] at (-0.5,-2.13) {inference};
+\node[anchor=north west, font=\scriptsize\itshape, text=black!60, align=left] at (-0.5,-2.2) {offline (no inference cost):\\source training, optional\\target adaptation and\\few-label recalibration};
+% ---------------- offline lane ----------------
+\node[off] (pi) at (4.3,-3.1) {$\hat\pi=P(D{=}1\mid z)$\\label-free: source split $\mathcal P$\\($+$ unlabelled target $\mathcal U$,\\cross-fitted, optional)};
+\node[off] (rho) at (7.15,-3.1) {$\hat\rho=P(W{=}1\mid D{=}1,z)$\\labelled disagreements\\of source split $\mathcal P$};
+\node[off] (thr) at (10.0,-3.1) {threshold $t_\lambda$\\tuned on policy-dev,\\or Bayes $\lambda\bar c$};
+\node[off, dashed] (fl) at (7.15,-4.25) {few-label recalibration (optional):\\shift $b$ of $\operatorname{logit}\hat\rho$ from $k$ target disagreements};
+\draw[offarr] (5.45,0 |- pi.north) -- (5.45,0 |- B.south);
+\draw[offarr] (7.2,0 |- rho.north) -- (7.2,0 |- B.south);
+\draw[offarr] (9.0,0 |- thr.north) -- (9.0,0 |- g.south);
+\draw[offarr, dashed] (fl) -- (rho);
+% ---------------- legend ----------------
+\node[box, minimum width=5mm, minimum height=2.6mm, inner sep=0pt] (l1) at (-0.2,-3.85) {};
+\node[anchor=west] at (l1.east) {always runs};
+\node[box, dashed, minimum width=5mm, minimum height=2.6mm, inner sep=0pt] (l2) at (-0.2,-4.2) {};
+\node[anchor=west] at (l2.east) {runs only if $g=1$};
+\node[off, minimum width=5mm, minimum height=2.6mm, inner sep=0pt] (l3) at (-0.2,-4.55) {};
+\node[anchor=west] at (l3.east) {fitted offline};
+\end{tikzpicture}

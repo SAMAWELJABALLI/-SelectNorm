@@ -1,0 +1,373 @@
+{
+ "note": "Reported end-to-end timing: mE5 from measured_cost_mE5_retime.json (the first mE5 run overlapped a concurrent audit job during S4 and is kept unchanged in measured_cost.json); other encoders from measured_cost.json. Routing/prediction checks are identical (0 mismatches) in both runs.",
+ "results": [
+  {
+   "model": "FacebookAI/xlm-roberta-base",
+   "set": "S3_tsac_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 26.05082176000508,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9634858474421335,
+    "SN": 1.8824972634946493,
+    "R": 1.9656576069555753
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9785802221116497,
+    "SN": 1.856843357765435,
+    "R": 1.97858022211165
+   },
+   "estimated_B0_ms": 22.712739655182823,
+   "routed_share_timed": 0.87,
+   "sn_all_ms": 51.20821219508639,
+   "sn_all_rel_to_timed_B0": 1.965704293969896,
+   "routed_share_all": 0.8491228070175438
+  },
+  {
+   "model": "FacebookAI/xlm-roberta-base",
+   "set": "S4_tunizi",
+   "n_timed": 200,
+   "measured_B0_ms": 27.39562744501484,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9820151354077152,
+    "SN": 1.9476518916054109,
+    "R": 1.994872199210959
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9731032130539142,
+    "SN": 1.8913077382616401,
+    "R": 1.973103213053914
+   },
+   "estimated_B0_ms": 24.74565576362158,
+   "routed_share_timed": 0.905,
+   "sn_all_ms": 54.84974545878184,
+   "sn_all_rel_to_timed_B0": 2.0021350330036993,
+   "routed_share_all": 0.920695652173913
+  },
+  {
+   "model": "FacebookAI/xlm-roberta-base",
+   "set": "S5_narabizi",
+   "n_timed": 200,
+   "measured_B0_ms": 30.835269355003447,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9962832576981829,
+    "SN": 1.9660027446836275,
+    "R": 1.9941356228180325
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9732333068293535,
+    "SN": 1.9245006911948002,
+    "R": 1.9732333068293537
+   },
+   "estimated_B0_ms": 27.018187359316244,
+   "routed_share_timed": 0.945,
+   "sn_all_ms": 62.52358780384459,
+   "sn_all_rel_to_timed_B0": 2.0276647200326554,
+   "routed_share_all": 0.9465020576131687
+  },
+  {
+   "model": "FacebookAI/xlm-roberta-base",
+   "set": "S6_myc_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 28.186830275004695,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 1.035844825939252,
+    "SN": 1.6470178924711578,
+    "R": 2.0260314490073608
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 1.0414301489035207,
+    "SN": 1.6165337642668227,
+    "R": 2.0414301489035207
+   },
+   "estimated_B0_ms": 25.002059597118354,
+   "routed_share_timed": 0.565,
+   "sn_all_ms": 46.42736366786102,
+   "sn_all_rel_to_timed_B0": 1.6471296422794843,
+   "routed_share_all": 0.5509424958243856
+  },
+  {
+   "model": "sentence-transformers/LaBSE",
+   "set": "S3_tsac_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 21.825410224994357,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9958987815548075,
+    "SN": 1.8183904039313366,
+    "R": 2.004321404457172
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9856147303980685,
+    "SN": 1.7655449888549166,
+    "R": 1.9856147303980685
+   },
+   "estimated_B0_ms": 22.528640768268293,
+   "routed_share_timed": 0.775,
+   "sn_all_ms": 42.82436283368824,
+   "sn_all_rel_to_timed_B0": 1.9621332379194405,
+   "routed_share_all": 0.6940350877192982
+  },
+  {
+   "model": "sentence-transformers/LaBSE",
+   "set": "S4_tunizi",
+   "n_timed": 200,
+   "measured_B0_ms": 24.700243110015663,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 1.0018001909857004,
+    "SN": 1.7427358331357936,
+    "R": 1.9981389381546024
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9882918579791388,
+    "SN": 1.685449128212961,
+    "R": 1.9882918579791389
+   },
+   "estimated_B0_ms": 24.662736360936712,
+   "routed_share_timed": 0.68,
+   "sn_all_ms": 43.962155095998874,
+   "sn_all_rel_to_timed_B0": 1.7798268179058012,
+   "routed_share_all": 0.6810434782608695
+  },
+  {
+   "model": "sentence-transformers/LaBSE",
+   "set": "S5_narabizi",
+   "n_timed": 200,
+   "measured_B0_ms": 27.169798944987633,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 1.0073713440209628,
+    "SN": 1.5960926522790584,
+    "R": 1.997629596740673
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.992820413365618,
+    "SN": 1.5370181314766074,
+    "R": 1.992820413365618
+   },
+   "estimated_B0_ms": 27.048961390713636,
+   "routed_share_timed": 0.535,
+   "sn_all_ms": 44.80402292728877,
+   "sn_all_rel_to_timed_B0": 1.6490377060944117,
+   "routed_share_all": 0.5857338820301783
+  },
+  {
+   "model": "sentence-transformers/LaBSE",
+   "set": "S6_myc_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 24.97721272001627,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 1.0249537741440944,
+    "SN": 1.3144303965385327,
+    "R": 2.008714407103961
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 1.021296834156336,
+    "SN": 1.2747521902412609,
+    "R": 2.021296834156336
+   },
+   "estimated_B0_ms": 24.84282881601421,
+   "routed_share_timed": 0.26,
+   "sn_all_ms": 34.738209575994944,
+   "sn_all_rel_to_timed_B0": 1.390796081428109,
+   "routed_share_all": 0.3089954664757814
+  },
+  {
+   "model": "UBC-NLP/MARBERTv2",
+   "set": "S3_tsac_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 25.96198724002079,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9250172618900482,
+    "SN": 1.8840212493288304,
+    "R": 1.929291428153102
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9235798709861773,
+    "SN": 1.8391699755770985,
+    "R": 1.9235798709861776
+   },
+   "estimated_B0_ms": 19.886656085529687,
+   "routed_share_timed": 0.905,
+   "sn_all_ms": 48.37575165543488,
+   "sn_all_rel_to_timed_B0": 1.8633300759374436,
+   "routed_share_all": 0.8512280701754386
+  },
+  {
+   "model": "UBC-NLP/MARBERTv2",
+   "set": "S4_tunizi",
+   "n_timed": 200,
+   "measured_B0_ms": 26.57632765500466,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9064959800965673,
+    "SN": 1.877454263911091,
+    "R": 1.912288347537418
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.903606369902687,
+    "SN": 1.8329342971756482,
+    "R": 1.9036063699026868
+   },
+   "estimated_B0_ms": 21.88634894155628,
+   "routed_share_timed": 0.93,
+   "sn_all_ms": 48.390745172870716,
+   "sn_all_rel_to_timed_B0": 1.8208213640742843,
+   "routed_share_all": 0.8775652173913043
+  },
+  {
+   "model": "UBC-NLP/MARBERTv2",
+   "set": "S5_narabizi",
+   "n_timed": 200,
+   "measured_B0_ms": 29.774452515018766,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9255431778673322,
+    "SN": 1.8159847672335572,
+    "R": 1.9442247395075423
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.8921538217425149,
+    "SN": 1.7415281712223398,
+    "R": 1.8921538217425145
+   },
+   "estimated_B0_ms": 24.320978163858793,
+   "routed_share_timed": 0.85,
+   "sn_all_ms": 54.40823162961949,
+   "sn_all_rel_to_timed_B0": 1.827346165380371,
+   "routed_share_all": 0.869684499314129
+  },
+  {
+   "model": "UBC-NLP/MARBERTv2",
+   "set": "S6_myc_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 26.69479328496209,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9785498432648198,
+    "SN": 1.610249548896797,
+    "R": 1.987361869548726
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9570808543787473,
+    "SN": 1.5480508591002304,
+    "R": 1.9570808543787472
+   },
+   "estimated_B0_ms": 21.569339928235642,
+   "routed_share_timed": 0.585,
+   "sn_all_ms": 43.771694368645505,
+   "sn_all_rel_to_timed_B0": 1.6397090586688792,
+   "routed_share_all": 0.6039131472202338
+  },
+  {
+   "model": "intfloat/multilingual-e5-base",
+   "set": "S3_tsac_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 26.063893114992425,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9787854723924919,
+    "SN": 1.8212899170721255,
+    "R": 1.9827675018473312
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9797187580508386,
+    "SN": 1.7799919730593667,
+    "R": 1.9797187580508389
+   },
+   "estimated_B0_ms": 25.154733206407755,
+   "routed_share_timed": 0.785,
+   "sn_all_ms": 48.71927507860834,
+   "sn_all_rel_to_timed_B0": 1.8692247878573494,
+   "routed_share_all": 0.7747368421052632
+  },
+  {
+   "model": "intfloat/multilingual-e5-base",
+   "set": "S4_tunizi",
+   "n_timed": 200,
+   "measured_B0_ms": 28.403671755036157,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.982764506848348,
+    "SN": 1.8243078210760961,
+    "R": 1.9845337805674768
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9745322381349187,
+    "SN": 1.7813126107255484,
+    "R": 1.9745322381349186
+   },
+   "estimated_B0_ms": 27.261296682472214,
+   "routed_share_timed": 0.79,
+   "sn_all_ms": 51.41154316973647,
+   "sn_all_rel_to_timed_B0": 1.810031590743928,
+   "routed_share_all": 0.7666086956521739
+  },
+  {
+   "model": "intfloat/multilingual-e5-base",
+   "set": "S5_narabizi",
+   "n_timed": 200,
+   "measured_B0_ms": 30.25827924499481,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 0.9832800097160244,
+    "SN": 1.644073057895837,
+    "R": 1.9841004892886411
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 0.9742957583089219,
+    "SN": 1.6148720516530204,
+    "R": 1.974295758308922
+   },
+   "estimated_B0_ms": 29.636343738819406,
+   "routed_share_timed": 0.63,
+   "sn_all_ms": 51.64207066666743,
+   "sn_all_rel_to_timed_B0": 1.7067087737717215,
+   "routed_share_all": 0.6803840877914952
+  },
+  {
+   "model": "intfloat/multilingual-e5-base",
+   "set": "S6_myc_lat",
+   "n_timed": 200,
+   "measured_B0_ms": 28.70273850499416,
+   "measured_rel": {
+    "B0": 1.0,
+    "B1": 1.0477527875877326,
+    "SN": 1.4180750705341942,
+    "R": 2.0666277444099332
+   },
+   "estimated_rel": {
+    "B0": 1.0,
+    "B1": 1.0389690258788518,
+    "SN": 1.3793445317752762,
+    "R": 2.0389690258788518
+   },
+   "estimated_B0_ms": 27.532957583231656,
+   "routed_share_timed": 0.37,
+   "sn_all_ms": 41.89869349463145,
+   "sn_all_rel_to_timed_B0": 1.4597455043302314,
+   "routed_share_all": 0.3827248866618945
+  }
+ ]
+}

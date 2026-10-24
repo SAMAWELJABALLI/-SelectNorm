@@ -1,0 +1,61 @@
+\section{Results}
+\label{sec:results}
+
+\begin{table}[t]
+\centering
+\caption{Macro-F1 ($\lambda=0$, mean of five seeds), $f$ trained on Arabic script only. Bold: best deployable system per column; shaded: SelectNorm-adapt (primary). $^{\triangledown}$/$^{\blacktriangle}$: B0, B1, B3, B4 or SelectNorm-src significantly worse/better than SelectNorm-adapt (paired bootstrap, Holm-corrected $p<0.05$, 20 comparisons per encoder). $^\dagger$Two passes; $^\ddagger$uses test labels.}
+\label{tab:main}
+\footnotesize\setlength{\tabcolsep}{3.2pt}
+\input{tables/main}
+\end{table}
+
+\subsection{Selective normalisation against strong baselines (RQ1, RQ2)}
+\label{sec:main-results}
+Always normalising (B1) improves over the original input on the Tunisian and Algerian sets for every encoder, by 2.3--18.6 points (Table~\ref{tab:main}); on MYC it gains 8.8 points with XLM-R and loses 7.9 with LaBSE. Learned routing adds no consistent improvement. Against B4 no difference is significant and every 95\% interval lies inside $[-0.63,+0.58]$, within the 1-point margin in all 16 cells (a post hoc equivalence reading); SelectNorm-adapt and -src differ by $-0.25$ to $+0.54$ (three significant). Against B1 and B3, SelectNorm-adapt is relevantly better in one cell (LaBSE, MYC: $+5.5$, $+5.0$), where normalising harms and thresholding does not stop it, and relevantly worse in one (XLM-R, MYC: $-3.8$), where it keeps the original view for about 40\% of inputs although normalising is right; in the LaBSE MYC cell it is relevantly worse than B0, the better view there ($-2.5$). Elsewhere only 4 (B1) and 6 (B3) of 16 intervals lie within $\pm1$, and the other non-significant ones span $-1.3$ to $+2.4$, so small gains or losses cannot be excluded.
+
+\subsection{Accuracy and cost (RQ3)}
+\label{sec:cost}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_cost_quality.pdf}
+\Description{Four panels, one per test set, plotting macro-F1 against estimated inference cost for SelectNorm-adapt with tuned and Bayes thresholds, the direct-gain router B4 and confidence thresholding B3 at six values of lambda, with single points for the original view B0, always normalising B1 and the two-view ensemble R. Vertical lines mark the cost of one view and of both views.}
+\caption{Macro-F1 against \emph{estimated} cost (mE5, CPU, batch size 1; one pass of $f$ on $x$ = 1) for $\lambda\in\{0,.01,.02,.05,.1,.2\}$; measured timings are in the text. Segments join discrete $\lambda$ settings (no interpolation); on every curve cost falls as $\lambda$ rises. Bars: s.d.\ over five seeds, not confidence intervals. Grey lines: one view, both views. Routers and B3 pay the first pass and normaliser (sunk) and the second pass when selected. Vertical axes differ between panels; $\blacktriangledown$: B0 below the plotted range.}
+\label{fig:pareto}
+\end{figure}
+B0 costs 1.00 and B1 0.97--1.04 passes (the normaliser adds about 0.4\%). At $\lambda=0$ SelectNorm-adapt costs 1.69--1.88 passes for mE5 and 1.43--1.88 across encoders, against 1.89--2.05 for the ensemble; raising $\lambda$ lowers the cost (mE5: 1.14--1.45 at $\lambda=0.2$) while macro-F1 falls towards B0 (Fig.~\ref{fig:pareto}). Routing is never cheaper than the better single view nor relevantly more accurate (at most $+0.6$, not significant); it saves compute relative to running both views. Timing the deployed pipeline (200 sentences per set; live decisions reproduce all 184{,}400 archived ones) agrees: B0 22--31\,ms; B1 0.91--1.05, SelectNorm-adapt 1.31--1.97, R 1.91--2.07 passes. Thresholding with each input's own cost $\lambda c_1(x)$ (exploratory) changes macro-F1 by $-2.0$ to $+0.6$ and cost by 0 to $-0.11$ passes, moving along the same trade-off curve (no worse on both in 29 of 80 cells, trading accuracy for cost in 48).
+
+\subsection{Which factor limits per-input routing (RQ5)}
+\label{sec:mechanism}
+\begin{table}[t]
+\centering
+\caption{Mechanisms ($\Tcons$, Arabic-script $f$, five seeds). M1: disagreement rate (\%), AUC of target-cross-fitted $\hat\pi$. M2: win rate of $T(x)$ on disagreements (\%), AUC of source $\hat\rho$ and of the target-trained cross-validated reference (not deployable), calibration gap of source $\hat\rho$. M3: gain of $\hat\rho>\nicefrac12$ over the best view. M4: oracle headroom, minus the bootstrap-classifier reference. $^\circ$: AUC interval contains 0.5; $^{*}$: interval excludes 0 (95\% bootstrap intervals).}
+\label{tab:mechanism}
+\scriptsize\setlength{\tabcolsep}{2.6pt}
+\input{tables/mechanism}
+\end{table}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_auc_dotplot.pdf}
+\Description{Dot plot with four panels, one per encoder, and one row per test set S3 to S6. Each row shows three AUC values with 95 percent intervals: the disagreement estimator on unlabelled target text, between 0.62 and 0.74; the advantage estimator trained on source labels, mostly between 0.54 and 0.71, with XLM-R at 0.45 and 0.44 on S5 and S6; and the target-trained cross-validated reference, between 0.53 and 0.68. A dashed vertical line marks chance at 0.5.}
+\caption{AUC per encoder and test set (Table~\ref{tab:mechanism}; 95\% bootstrap intervals over test sentences, estimators not refitted). $\hat\pi$ predicts disagreement, fitted on unlabelled target text; $\hat\rho$ predicts the correct view among disagreements, trained on source labels; the reference fits the same features and estimator family on target labels (cross-validated), which no deployable system can. Tasks, populations and information access differ, so the AUCs are compared descriptively; a gap does not show intrinsic unpredictability.}
+\label{fig:diagmap}
+\end{figure}
+\paragraph{(M1) Disagreement is moderately predictable.} 21--39\% of inputs change label under normalisation; label-free $\hat\pi$ ranks them with AUC 0.62--0.74, all intervals within $[0.57,0.77]$ (Table~\ref{tab:mechanism}, Fig.~\ref{fig:diagmap}). Target re-estimation helps most on MYC (mE5: 0.67 to 0.74), but the rule at $\lambda=0$ depends on $\hat\rho$ alone.
+
+\paragraph{(M2) Direction is weakly predictable from $z$ with linear estimators, also with target labels.} Source $\hat\rho$ reaches AUC 0.54--0.71 in 14 of 16 cells (Fig.~\ref{fig:diagmap}) (upper bounds $\le0.76$); for XLM-R the interval includes 0.5 on Algerian text and lies below it on Moroccan text ($[0.41,0.48]$). The target-trained cross-validated reference, which uses labels no deployable system has, reaches 0.53--0.68 (upper bounds $\le0.73$; five intervals include 0.5). What changes across domains is the \emph{level} of $\rho$: the win rate ranges from 33\% to 77\%, and source $\hat\rho$ is miscalibrated out of domain (gaps up to $+20$ points; intervals exclude zero in 11 of 12 cells).
+
+\paragraph{(M3, M4) Benefit and headroom.} The rule $\hat\rho>\nicefrac12$ gains $-3.3$ to $+1.0$ points over the best view with source estimates (one interval above zero, three below) and $-0.7$ to $+2.8$ with the target-trained reference (upper bounds $\le+3.9$): most of the gap to the oracle remains when the router is fitted on target labels. The oracle gains 7--17 points over the best view, but two classifiers differing only in a bootstrap resample of their training data show 3--15 points of such headroom; this reference depends on how the classifiers are made (2--6 with 80\% subsamples, 5--22 with weaker regularisation) and is not a decomposition.
+
+\paragraph{Linguistic conditions.} On Tunisian and Algerian sets, normalising helps less on inputs with many French or English tokens or low lexicon coverage (all encoders except XLM-R on TUNIZI, French/English); negation and length show no consistent pattern; on MYC every condition changes sign with the encoder.
+
+\subsection{Few target labels (RQ6), ablations and classifier regime}
+\label{sec:fewlabel}
+With $k$ labelled target sentences, re-estimating the shift of $\hat\rho$ changes macro-F1 relative to zero-shot SelectNorm-adapt by $-1.4$ to $+1.5$ points across encoders, regimes, sets and $k$ (mean $-0.01$). Although targeted labels are $1/P(D{=}1)$ times more informative about the shift (Proposition~\ref{prop:efficiency}), the resulting macro-F1 is within $-0.1$ to $+0.2$ points of random labels at every $k$ (averaged, descriptive). In the Arabic-script regime SelectNorm beats a set-level choice between B0 and B1 when $k\le16$ (by 2.6--2.9 points on average); the advantage shrinks to 0.3 points at $k=128$, consistent with M2.
+
+\label{sec:normaliser}
+\paragraph{Ablations (mE5, $\lambda=0$).} The safeguards set the quality of the views the router chooses between. Always normalising without them loses 4.2--6.2 points with $T_{\rm lex}$ and 5.2--10.6 with $T_{\rm rule}$ relative to $\Tcons$ on every set; routing over $T_{\rm lex}$ recovers only part of it (0.6--4.6 points below routing over $\Tcons$). Keeping out-of-lexicon tokens in Latin script ($T_{\rm cov}$) reduces disagreements by about a third; it is worse than $\Tcons$ on the Tunisian sets and slightly better on $S_5$ and $S_6$. Routing components matter less. Removing $\hat\pi$ (rule $2\hat\rho-1$) changes macro-F1 by at most 0.1 point, as Sect.~\ref{sec:formulation} implies for $\lambda=0$, and dropping the target re-estimation of $\hat\pi$ by at most 0.2. Removing one feature group changes it by $-0.5$ to $+0.7$, and gradient boosting by $-0.6$ to $+0.7$. Two label-free simplifications, ranking by $\hat\pi$ alone or using confidence features alone, stay within 0.2 points of always normalising on every set; on $S_6$ they are 0.6--0.7 points below the full router. \paragraph{Human transliterations (RQ4) and \textsc{+syn}.} On NArabizi, B1 agrees with $f$'s prediction on the human transliteration for 73--77\% of inputs, against 61--67\% for B0 and 73--76\% for SelectNorm-adapt; $f$ reaches 65--77 macro-F1 on the human transliterations. In the \textsc{+syn} regime the original view improves, the win rate on disagreements moves towards 50\%, and SelectNorm-adapt is relevantly better than the better view once with Holm correction (MARBERTv2, $S_4$, $+1.1$) and twice more under the unadjusted criterion (mE5, $S_3$ $+2.1$, $S_4$ $+1.4$), and relevantly worse in two MYC cells under both (LaBSE $-2.4$, MARBERTv2 $-1.8$); it is never significantly better than B4 (worse once, $-0.4$).
+
+\subsection{Qualitative examples}
+\label{sec:qualitative}
+\input{tables/qualitative}
+In Table~\ref{tab:qualitative} (hand-picked), TSAC~796 shows the negator list and protection of French \textit{role}, TSAC~86 the character-rule fallback. In both NArabizi sentences French \textit{le} is mapped to \ar{la} (\textit{no}), yet the normalised view is right in sentence~2 and wrong in 4609; the router selects it in every seed, as its features do not separate the cases; for MYC~9079 it varies with the policy split.

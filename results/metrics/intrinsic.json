@@ -1,0 +1,74 @@
+{
+ "rule": {
+  "tarc_heldout": {
+   "n_arabizi": 5563,
+   "n_foreign": 2189,
+   "arabizi_word_acc": 0.36275390976092037,
+   "arabizi_cer": 0.2754588832050896,
+   "arabizi_wrongly_kept": 0.0,
+   "foreign_recall": 0.0,
+   "foreign_precision": 0.0
+  },
+  "tarc_negation": {
+   "n_negation": 103,
+   "negation_preserved": 0.2912621359223301
+  },
+  "narabizi": {
+   "n_arabizi": 6670,
+   "n_foreign": 2943,
+   "arabizi_word_acc": 0.38980509745127434,
+   "arabizi_cer": 0.2448379923761118,
+   "arabizi_wrongly_kept": 0.0,
+   "foreign_recall": 0.0003397893306150187,
+   "foreign_precision": 1.0
+  }
+ },
+ "lex": {
+  "tarc_heldout": {
+   "n_arabizi": 5563,
+   "n_foreign": 2189,
+   "arabizi_word_acc": 0.6951285277727844,
+   "arabizi_cer": 0.13201220822765766,
+   "arabizi_wrongly_kept": 0.0,
+   "foreign_recall": 0.0,
+   "foreign_precision": 0.0
+  },
+  "tarc_negation": {
+   "n_negation": 103,
+   "negation_preserved": 0.5436893203883495
+  },
+  "narabizi": {
+   "n_arabizi": 6670,
+   "n_foreign": 2943,
+   "arabizi_word_acc": 0.47571214392803596,
+   "arabizi_cer": 0.22168837357052096,
+   "arabizi_wrongly_kept": 0.0,
+   "foreign_recall": 0.0003397893306150187,
+   "foreign_precision": 1.0
+  }
+ },
+ "cons": {
+  "tarc_heldout": {
+   "n_arabizi": 5563,
+   "n_foreign": 2189,
+   "arabizi_word_acc": 0.6908143088261729,
+   "arabizi_cer": 0.13846021579331985,
+   "arabizi_wrongly_kept": 0.011324824734855294,
+   "foreign_recall": 0.7871174052078574,
+   "foreign_precision": 0.9647256438969765
+  },
+  "tarc_negation": {
+   "n_negation": 103,
+   "negation_preserved": 0.9611650485436893
+  },
+  "narabizi": {
+   "n_arabizi": 6670,
+   "n_foreign": 2943,
+   "arabizi_word_acc": 0.4679160419790105,
+   "arabizi_cer": 0.2355066709021601,
+   "arabizi_wrongly_kept": 0.017991004497751123,
+   "foreign_recall": 0.5283724091063541,
+   "foreign_precision": 0.9283582089552239
+  }
+ }
+}

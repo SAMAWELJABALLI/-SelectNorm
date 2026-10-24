@@ -1,0 +1,44 @@
+{
+ "C1_export_checksums": {
+  "n": 32,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C2_f1_exports_vs_logs": {
+  "n": 2240,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C3_table2_vs_logs": {
+  "n": 352,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C5_fig2_data_vs_logs": {
+  "n": 324,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C6_tables_regenerated": {
+  "n": 10,
+  "failures": [],
+  "note": "consistency table (RQ4) needs data/prepared and is not regenerated here",
+  "status": "PASS"
+ },
+ "C7_fewlabel_data_vs_logs": {
+  "n": 200,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C8_intrinsic_table_vs_json": {
+  "n": 15,
+  "failures": [],
+  "status": "PASS"
+ },
+ "C9_cost_fix_lambda0_invariance": {
+  "n": 10560,
+  "failures": [],
+  "note": "593 lambda>0 rows changed macro-F1 (expected after the fix)",
+  "status": "PASS"
+ }
+}

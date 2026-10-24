@@ -1,0 +1,240 @@
+clf_train_ar orig n=5008 54.7s
+clf_dev_ar orig n=556 8.2s
+policy_pool orig n=6204 106.4s
+policy_pool cons n=6204 52.5s
+policy_pool lex n=6204 48.1s
+policy_pool rule n=6204 74.7s
+S0_tsac_ar orig n=1292 16.6s
+S3_tsac_lat orig n=1425 14.0s
+S3_tsac_lat cons n=1425 13.8s
+S3_tsac_lat lex n=1425 13.6s
+S3_tsac_lat rule n=1425 12.8s
+S4_tunizi orig n=2875 32.3s
+S4_tunizi cons n=2875 27.9s
+S4_tunizi lex n=2875 28.1s
+S4_tunizi rule n=2875 28.3s
+S5_narabizi orig n=729 12.0s
+S5_narabizi cons n=729 11.3s
+S5_narabizi lex n=729 11.7s
+S5_narabizi rule n=729 11.4s
+S5ar_narabizi_gold orig n=729 11.8s
+S6_myc_lat orig n=4191 49.3s
+S6_myc_lat cons n=4191 61.3s
+S6_myc_lat lex n=4191 62.2s
+S6_myc_lat rule n=4191 60.2s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+clf_train_ar orig n=5008 581.1s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+clf_dev_ar orig n=556 7.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+policy_pool orig n=6204 42.9s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+policy_pool cons n=6204 90.7s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+policy_pool lex n=6204 43.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+policy_pool rule n=6204 41.9s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S0_tsac_ar orig n=1292 14.9s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S3_tsac_lat orig n=1425 12.4s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S3_tsac_lat cons n=1425 12.4s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S3_tsac_lat lex n=1425 12.1s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S3_tsac_lat rule n=1425 11.5s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S4_tunizi orig n=2875 27.7s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S4_tunizi cons n=2875 23.7s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S4_tunizi lex n=2875 24.0s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S4_tunizi rule n=2875 23.4s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S5_narabizi orig n=729 10.8s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S5_narabizi cons n=729 10.1s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S5_narabizi lex n=729 10.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S5_narabizi rule n=729 10.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S5ar_narabizi_gold orig n=729 10.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S6_myc_lat orig n=4191 45.5s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S6_myc_lat cons n=4191 58.4s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S6_myc_lat lex n=4191 57.3s
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: FacebookAI/xlm-roberta-base
+Key                       | Status     |  | 
+
+S6_myc_lat rule n=4191 56.9s
+clf_train_ar orig n=5008 48.8s
+clf_dev_ar orig n=556 7.0s
+policy_pool orig n=6204 37.6s
+policy_pool cons n=6204 35.3s
+policy_pool lex n=6204 34.1s
+policy_pool rule n=6204 33.7s
+S0_tsac_ar orig n=1292 13.4s
+S3_tsac_lat orig n=1425 11.0s
+S3_tsac_lat cons n=1425 9.9s
+S3_tsac_lat lex n=1425 9.8s
+S3_tsac_lat rule n=1425 9.9s
+S4_tunizi orig n=2875 25.1s
+S4_tunizi cons n=2875 24.0s
+S4_tunizi lex n=2875 24.3s
+S4_tunizi rule n=2875 23.5s
+S5_narabizi orig n=729 9.8s
+S5_narabizi cons n=729 9.4s
+S5_narabizi lex n=729 8.9s
+S5_narabizi rule n=729 9.2s
+S5ar_narabizi_gold orig n=729 9.4s
+S6_myc_lat orig n=4191 42.1s
+S6_myc_lat cons n=4191 38.7s
+S6_myc_lat lex n=4191 39.5s
+S6_myc_lat rule n=4191 38.1s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+clf_train_ar orig n=5008 40.2s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+clf_dev_ar orig n=556 5.3s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+policy_pool orig n=6204 43.3s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+policy_pool cons n=6204 30.2s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+policy_pool lex n=6204 29.8s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+policy_pool rule n=6204 28.6s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S0_tsac_ar orig n=1292 10.2s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S3_tsac_lat orig n=1425 11.3s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S3_tsac_lat cons n=1425 8.8s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S3_tsac_lat lex n=1425 8.7s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S3_tsac_lat rule n=1425 8.1s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S4_tunizi orig n=2875 28.7s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S4_tunizi cons n=2875 20.3s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S4_tunizi lex n=2875 19.2s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S4_tunizi rule n=2875 18.4s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S5_narabizi orig n=729 12.0s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S5_narabizi cons n=729 8.4s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S5_narabizi lex n=729 7.8s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S5_narabizi rule n=729 8.0s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S5ar_narabizi_gold orig n=729 7.6s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S6_myc_lat orig n=4191 42.9s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S6_myc_lat cons n=4191 34.7s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S6_myc_lat lex n=4191 34.2s
+[transformers] [1mBertModel LOAD REPORT[0m from: UBC-NLP/MARBERTv2
+Key                                        | Status     |  | 
+
+S6_myc_lat rule n=4191 34.4s

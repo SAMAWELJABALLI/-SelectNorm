@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\newfontfamily\arabicfont[Script=Arabic,Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,Scale=1.1]{Amiri}
+\newfontfamily\latinfont{TeX Gyre Termes}
+\hoffset=-1in \voffset=-1in \topskip=0pt \parindent=0pt
+\newwrite\idx \immediate\openout\idx=ar_index.tex
+\newcount\pg \pg=0
+\def\snip#1#2{\setbox0\hbox{\textdir TRT\arabicfont #2}\global\advance\pg by 1 \pagewidth=\wd0 \pageheight=\dimexpr\ht0+\dp0\relax \immediate\write\idx{\string\arsnip{#1}{\the\pg}{\the\numexpr\dp0*1000/(\ht0+\dp0)\relax}}\shipout\vbox{\box0}}
+\begin{document}
+\fontsize{10}{12}\selectfont
+\snip{ain}{ع}
+\snip{hha}{ح}
+\snip{qaf}{ق}
+\snip{kha}{خ}
+\snip{shin}{ش}
+\snip{ha}{ه}
+\snip{laugh}{ههه}
+\snip{ma}{ما}
+\snip{la}{لا}
+\snip{exAa}{مش خارج عليك ال \hbox{\textdir TLT\latinfont role}}
+\snip{exAb}{متربي موش كيف يجلذ لخر}
+\snip{exBa}{سلام عليكوم ان شاء الله لا بنديوم ات لس ميديلس د \char"2019{} اور}
+\snip{exBb}{وي لا \hbox{\textdir TLT\latinfont Maroc} اكتر جهيزييا اللي حد تسفييت لا علي لمستوا تنديمي}
+\immediate\closeout\idx
+\end{document}

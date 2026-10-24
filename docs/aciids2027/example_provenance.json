@@ -1,0 +1,272 @@
+[
+ {
+  "paper_id": "TSAC 796",
+  "internal_id": "S3_tsac_lat:1091",
+  "src_id": "d906da9a0b95",
+  "corpus": "TSAC",
+  "location": "test file, line 796",
+  "commit": "github.com/fbougares/TSAC @3995e70",
+  "licence": "LGPL-3.0",
+  "reuse_status": "verbatim quoted",
+  "effect": "help",
+  "phenomenon": "negator *mech* mapped by fixed list; French *role* protected",
+  "gold": 0,
+  "p0": 0.565,
+  "p1": 0.127,
+  "g_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "normaliser_trace": {
+   "latin": 5,
+   "negation": 1,
+   "lex": 3,
+   "lex_ent": 0.18272923665262014,
+   "protected": 1
+  },
+  "text": "mech 5arej 3lik el role",
+  "normalised": "مش خارج عليك ال role"
+ },
+ {
+  "paper_id": "TSAC 86",
+  "internal_id": "S3_tsac_lat:40",
+  "src_id": "0e83d233515d",
+  "corpus": "TSAC",
+  "location": "test file, line 86",
+  "commit": "github.com/fbougares/TSAC @3995e70",
+  "licence": "LGPL-3.0",
+  "reuse_status": "verbatim quoted",
+  "effect": "harm",
+  "phenomenon": "*ijale4*, *la5er* fall back to character rules",
+  "gold": 1,
+  "p0": 0.806,
+  "p1": 0.004,
+  "g_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "normaliser_trace": {
+   "latin": 5,
+   "rule": 3,
+   "amb": 6,
+   "negation": 1,
+   "lex": 1,
+   "lex_ent": 0.0
+  },
+  "text": "Metrobi mouch kif ijale4 la5er",
+  "normalised": "متربي موش كيف يجلذ لخر"
+ },
+ {
+  "paper_id": "NArabizi 2",
+  "internal_id": "S5_narabizi:240",
+  "src_id": "8aca8ea1a08d",
+  "corpus": "NArabizi",
+  "location": "UD sent_id 2",
+  "commit": "UD_Maghrebi_Arabic_French-Arabizi @89fddb4",
+  "licence": "CC BY-SA 4.0 (text); sentiment label from Touileb et al. repository, no licence stated",
+  "reuse_status": "verbatim quoted (text only)",
+  "effect": "help",
+  "phenomenon": "French article *le* read as Arabizi and mapped to لا",
+  "gold": 1,
+  "p0": 0.175,
+  "p1": 0.842,
+  "g_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "normaliser_trace": {
+   "latin": 10,
+   "lex": 3,
+   "lex_ent": 0.3250829733914482,
+   "rule": 6,
+   "amb": 5,
+   "negation": 1,
+   "other": 1
+  },
+  "text": "salem 3alikoum inchalah le pondium et les midailes d’or",
+  "normalised": "سلام عليكوم ان شاء الله لا بنديوم ات لس ميديلس د ’ اور"
+ },
+ {
+  "paper_id": "NArabizi 4609",
+  "internal_id": "S5_narabizi:298",
+  "src_id": "661746dc3aec",
+  "corpus": "NArabizi",
+  "location": "UD sent_id 4609",
+  "commit": "UD_Maghrebi_Arabic_French-Arabizi @89fddb4",
+  "licence": "CC BY-SA 4.0 (text); sentiment label from Touileb et al. repository, no licence stated",
+  "reuse_status": "verbatim quoted (text only)",
+  "effect": "harm",
+  "phenomenon": "*le* mapped to لا; *Maroc* protected",
+  "gold": 1,
+  "p0": 0.519,
+  "p1": 0.088,
+  "g_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "normaliser_trace": {
+   "latin": 12,
+   "rule": 6,
+   "amb": 9,
+   "negation": 2,
+   "protected": 1,
+   "lex": 3,
+   "lex_ent": 1.1642193539015506
+  },
+  "text": "oui le Maroc aktar jahiziya li had tasfiyat la 3ala lmostawa tandimi",
+  "normalised": "وي لا Maroc اكتر جهيزييا اللي حد تسفييت لا علي لمستوا تنديمي"
+ },
+ {
+  "paper_id": "MYC 9079",
+  "internal_id": "S6_myc_lat:1359",
+  "src_id": "12aa67112d9c",
+  "corpus": "MYC",
+  "location": "DATA_CLEANED.csv row 9079",
+  "commit": "github.com/MouadJb/MYC @645d51a",
+  "licence": "no licence; YouTube comments",
+  "reuse_status": "WITHHELD (text and normalised output)",
+  "effect": "harm (seeds 2-4)",
+  "phenomenon": "two ma...ch negations split as ما...ش; letter elongations squeezed; emoji kept",
+  "gold": 1,
+  "p0": 0.645,
+  "p1": 0.25,
+  "g_seeds": [
+   0,
+   0,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   1,
+   1,
+   0,
+   0,
+   0
+  ],
+  "normaliser_trace": {
+   "latin": 4,
+   "negation": 2,
+   "rule": 4,
+   "amb": 2,
+   "other": 2
+  }
+ },
+ {
+  "paper_id": "MYC 14543",
+  "internal_id": "S6_myc_lat:2738",
+  "src_id": "4f3a38718e2e",
+  "corpus": "MYC",
+  "location": "DATA_CLEANED.csv row 14543",
+  "commit": "github.com/MouadJb/MYC @645d51a",
+  "licence": "no licence; YouTube comments",
+  "reuse_status": "WITHHELD (text and normalised output)",
+  "effect": "both views wrong",
+  "phenomenon": "two Latin-script loanwords protected; negated verb split; emoji kept",
+  "gold": 1,
+  "p0": 0.48,
+  "p1": 0.302,
+  "g_seeds": [
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "yhat_seeds": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "normaliser_trace": {
+   "latin": 5,
+   "protected": 2,
+   "negation": 1,
+   "rule": 2,
+   "amb": 1,
+   "lex": 1,
+   "lex_ent": 0.0,
+   "other": 1
+  }
+ },
+ {
+  "paper_id": "MYC 10259",
+  "internal_id": "S6_myc_lat:1703",
+  "src_id": "5106aa2aa8aa",
+  "corpus": "MYC",
+  "location": "DATA_CLEANED.csv row 10259",
+  "commit": "github.com/MouadJb/MYC @645d51a",
+  "licence": "no licence; YouTube comments",
+  "reuse_status": "WITHHELD; spare, not in paper",
+  "effect": "-",
+  "phenomenon": "-",
+  "gold": 1,
+  "p0": 0.458,
+  "p1": 0.53,
+  "g_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "yhat_seeds": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "normaliser_trace": {
+   "latin": 7,
+   "rule": 5,
+   "amb": 4,
+   "lex": 2,
+   "lex_ent": 0.2145591551764051,
+   "negation": 1,
+   "other": 2
+  }
+ }
+]

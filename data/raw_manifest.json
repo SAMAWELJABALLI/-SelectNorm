@@ -1,0 +1,47 @@
+{
+ "TSAC": {
+  "url": "https://github.com/fbougares/TSAC",
+  "commit": "3995e702139450fe977841af1700abcdd4c789e7",
+  "files": {
+   "train_pos.txt": "1ddedc6fce42e9d3e09a5892088700a1c9065dcd2f1739983babdf964fc21556",
+   "train_neg.txt": "4babaf50959d556ea879a471acc3f5c0b794c6e606f31da8002633ab8b199668",
+   "test_pos.txt": "36e64d31103fb770988337b0a3a71340ac2187c568d52e9eec139df4571b7eb1",
+   "test_neg.txt": "41e8e829d1b74196ba82c03171e793ac641dd3c936de6a662d9fa399d438a3c6",
+   "LICENSE": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+  }
+ },
+ "TUNIZI-Sentiment-Analysis-Tunisian-Arabizi-Dataset": {
+  "url": "https://github.com/chaymafourati/TUNIZI-Sentiment-Analysis-Tunisian-Arabizi-Dataset",
+  "commit": "33a341ce27d7db58198e40469f7cdc229ab3db89",
+  "files": {
+   "TUNIZI-Dataset.txt": "af5a8eab4f2e2e20d5ff86a1e79ac0903f7023c06d321b33660f8c371e1bd051"
+  }
+ },
+ "MYC": {
+  "url": "https://github.com/MouadJb/MYC",
+  "commit": "645d51af6dce7bae3f27ffc3005e4d788d5ee2e4",
+  "files": {
+   "DATA_CLEANED.csv": "e01093086222a94ee698fae0514c312346aaae3c0eadd2e2c76fc58aeae3081f"
+  }
+ },
+ "Narabizi": {
+  "url": "https://github.com/SamiaTouileb/Narabizi",
+  "commit": "1434f57bbaa718994f9080e4402f72d81a2962b2",
+  "files": {
+   "data/Narabizi/pos/dev_NArabizi.conllu": "8732466866d41c54f3b01ff0e42a2bcc984ad8880f332916af216c005558d935",
+   "data/Narabizi/pos/test_NArabizi.conllu": "d93b8308621d46f13ce129ebdea5a395af9956dc85157d545b1291e05e582c5b",
+   "data/Narabizi/pos/train_NArabizi.conllu": "c31699d32f5becc62dea5187f2df4427287f62eb0188388a296c5f1720cffd2b",
+   "data/Narabizi/sentiment/dev_Narabizi_sentiment.txt": "e951e7d6a380563b5b1a28b985d3f824de3c5b0b1c1012102b97ba865a5d20b5",
+   "data/Narabizi/sentiment/test_Narabizi_sentiment.txt": "da09e4f92c75a026d21e16a4ee6b6dc18da245d767ed156bf8b35e9e82c1de0b",
+   "data/Narabizi/sentiment/train_Narabizi_sentiment.txt": "f3e479bccb179b8be307be508905d6bd10708835fa9f5cdffc9380289070b382"
+  }
+ },
+ "tarc": {
+  "url": "https://github.com/eligugliotta/tarc",
+  "commit": "ee2b293c5af994ff8f03cedbf8d1868f3bcd9689",
+  "files": {
+   "tarc.tsv": "e4eb22f3acceb6ad334a4b8be9639a279dc7b878fb7243230c947c6458975acb",
+   "README.md": "003086072bb8c83341de53e7f80d0cd19072edf5abc7d67b46f96b3bbc6c03fd"
+  }
+ }
+}

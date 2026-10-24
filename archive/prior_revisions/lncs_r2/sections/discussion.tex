@@ -1,0 +1,13 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The factorisation separates disagreement detection from conditional advantage estimation, making their distinct contributions to routing performance measurable. Transfer limits routing only for XLM-R on Algerian and Moroccan text, where fitting $\hat\rho$ on the target turns a loss of up to 3.3 points into a small gain; elsewhere the limitation persists with target labels and with 16 embedding components ($-1.2$ to $+1.1$, no consistent sign). The win rate on disagreements varies far more between encoder--dialect pairs (33--77\%) than the features resolve within a set; accordingly, with 64--128 target labels a set-level choice is on average within 0.3--0.7 points of SelectNorm (not a guarantee for every configuration). These are limits of the features and estimators evaluated, not evidence that the conditional advantage is intrinsically unpredictable. The results support corpus- and encoder-specific view selection with a safeguarded normaliser in the evaluated frozen-encoder setting; effects of dialect, corpus, platform, content and normaliser are not isolated.
+
+\section{Limitations}
+\label{sec:limitations}
+\emph{Task and models.} All experiments use binary sentiment, where the factorisation is exact with $\rho$ alone; the $K$-class form needs two conditional win rates. Encoders are frozen and heads linear, and all conclusions are restricted to this setting; fine-tuning (not done, CPU only; \textsc{+syn} is a partial probe) could change how often normalisation helps and how predictable the winning view is.
+\emph{Normaliser.} $T$ is built from Tunisian resources (e.g.\ \textit{8}\,=\,\ar{ha}); its safeguards were tuned on the TArC held-out split with no independent test set, so its intrinsic accuracy is \emph{not independently validated}; it is lower on NArabizi and unmeasured on MYC.
+\emph{Data.} Cross-corpus differences mix dialect with platform, topic, period and label distribution; we do not attribute them to dialect alone. TUNIZI, the NArabizi sentiment layer, MYC and MARBERTv2 state no licence; we use them for research only and do not redistribute them.
+\emph{Development.} A character $n$-gram pilot whose test results we inspected motivated the few-label setting.
+\emph{Analysis.} Mechanism intervals do not cover estimator refitting; the target-trained reference is not an upper bound on achievable performance. Features computed after $f(T(x))$, which need the second pass, were not studied. Equivalence statements are post hoc and uncorrected for multiplicity. The qualitative examples are hand-picked.
+\emph{Costs.} Costs are estimated from a token-length model and checked by timing on one 4-core CPU; relative costs on accelerators differ.

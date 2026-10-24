@@ -1,0 +1,26 @@
+{
+ "FacebookAI/xlm-roberta-base": {
+  "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+  "weights": "model.safetensors",
+  "sha256": "6fd4797bc397c3b8b55d6bb5740366b57e6a3ce91c04c77f22aafc0c128e6feb",
+  "license": "mit"
+ },
+ "intfloat/multilingual-e5-base": {
+  "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+  "weights": "model.safetensors",
+  "sha256": "a18a44fad1d0b46ded15928144138cff1135d5cc8233bdd90be5f18822de09a7",
+  "license": "mit"
+ },
+ "sentence-transformers/LaBSE": {
+  "revision": "836121a0533e5664b21c7aacc5d22951f2b8b25b",
+  "weights": "model.safetensors",
+  "sha256": "77d8e1f2dbab6eb5d3c261ce9d3dbf1e3c69e02938c95f934f94f42c22dfa31f",
+  "license": "apache-2.0"
+ },
+ "UBC-NLP/MARBERTv2": {
+  "revision": "fe88db9db8ccdb0c4e1627495f405c44a5f89066",
+  "weights": "pytorch_model.bin",
+  "sha256": "5d34aca06d9ec233e8483478faec43cea7c819d1ea4f83fc99d9c8067dcf8bab",
+  "license": null
+ }
+}

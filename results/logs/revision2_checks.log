@@ -1,0 +1,75 @@
+seed 0 done
+seed 1 done
+seed 2 done
+seed 3 done
+seed 4 done
+enc_FacebookAI__xlm-roberta-base 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_FacebookAI__xlm-roberta-base+syn 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_UBC-NLP__MARBERTv2 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_UBC-NLP__MARBERTv2+syn 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_intfloat__multilingual-e5-base 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_intfloat__multilingual-e5-base+syn 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+enc_sentence-transformers__LaBSE 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 25}
+enc_sentence-transformers__LaBSE+syn 1000 {'other_fold': 0, 'src_overlap': 0, 'text_overlap': 0, 'targeted_not_disagreement': 0, 'budget_short': 50}
+{
+ "logged_comparison": {
+  "enc_intfloat__multilingual-e5-base": {
+   "entries": 1000,
+   "mismatches": 0,
+   "missing": 0
+  }
+ },
+ "total_draws": 8000,
+ "total_violations": {
+  "other_fold": 0,
+  "src_overlap": 0,
+  "text_overlap": 0,
+  "targeted_not_disagreement": 0,
+  "budget_short": 375
+ },
+ "sn_targeted_minus_zero_shot": {
+  "min": -1.3985105632149128,
+  "max": 1.4905923199853532,
+  "mean": -0.006592015712587695
+ }
+}
+enc:intfloat/multilingual-e5-base done
+enc:FacebookAI/xlm-roberta-base done
+enc:sentence-transformers/LaBSE done
+enc:UBC-NLP/MARBERTv2 done
+{
+ "check_max_abs_diff_vs_archived": 0.0,
+ "delta_f1_input_minus_mean": {
+  "min": -2.012847571718723,
+  "max": 0.5552497840667385,
+  "mean": -0.13363010928461588
+ },
+ "delta_cost_input_minus_mean": {
+  "min": -0.10683043584861984,
+  "max": 0.0002683269575503022,
+  "mean": -0.026367364977525
+ },
+ "per_lambda": {
+  "0.01": {
+   "d_f1": -0.004266432500532158,
+   "d_cost": -0.004182774113276666
+  },
+  "0.02": {
+   "d_f1": -0.007934898870547435,
+   "d_cost": -0.00928649951481414
+  },
+  "0.05": {
+   "d_f1": 0.026181934109319904,
+   "d_cost": -0.031101744486220717
+  },
+  "0.1": {
+   "d_f1": -0.18206875208570628,
+   "d_cost": -0.05044724032276436
+  },
+  "0.2": {
+   "d_f1": -0.5000623970756135,
+   "d_cost": -0.036818566450549095
+  }
+ }
+}
+ALL_DONE

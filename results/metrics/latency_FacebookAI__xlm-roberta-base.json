@@ -1,0 +1,16 @@
+{
+ "model": "FacebookAI/xlm-roberta-base",
+ "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+ "n_timed": 9000,
+ "intercept_s": 0.018334033712907476,
+ "per_token_s": 0.00030524265892473704,
+ "r2": 0.5141342925465583,
+ "median_s": 0.023292504500204814,
+ "threads": 4,
+ "cpu": "x86_64",
+ "torch": "2.14.1+cu130",
+ "updated": {
+  "enc_FacebookAI__xlm-roberta-base": "updated",
+  "enc_FacebookAI__xlm-roberta-base+syn": "updated"
+ }
+}

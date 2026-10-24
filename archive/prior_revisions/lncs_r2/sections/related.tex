@@ -1,0 +1,12 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Adaptive selection and deferral.}
+Selective classification abstains under low confidence~\cite{geifman2017selective,geifman2019selectivenet}; learning to defer trains a classifier and a deferral rule jointly~\cite{mozannar2020defer}. Closest to our setting are post-hoc cascade rules: Jitkrittum et al.~\cite{jitkrittum2023cascade} show that confidence-based deferral is optimal only under uniform second-stage errors and estimate the deferral gain directly; Gupta et al.~\cite{gupta2024cascades} learn deferral from token-level uncertainty. LLM routers choose a model from preference data~\cite{ong2025routellm} or from predicted weak--strong disagreement~\cite{noorani2026disagreement}. These methods choose between \emph{models}; SelectNorm chooses between two \emph{views} for one frozen model and factorises the gain.
+
+\paragraph{Input transformation and multilingual processing.}
+Kim et al.~\cite{kim2020learningloss} predict the loss of each test-time augmentation (our B4b). Kang et al.~\cite{kang2026luar} train an LLM to decide whether to translate a query before reasoning. Translate-test is usually chosen per task rather than per input~\cite{artetxe2023revisiting}, and transliterating unseen scripts can help multilingual encoders~\cite{muller2021unseen,moosa2023transliteration}. None studies transfer of the selection rule across dialects.
+
+\paragraph{Arabizi and dialect normalisation.}
+Arabizi has been converted to Arabic script with rules, lexicons and sequence models~\cite{darwish2014arabizi,shazal2020unified}. Dialect normalisation maps dialectal text to a standard variety with rules and LLMs~\cite{dimakis2025dialect} or with dialect identification~\cite{alhafni2024exploiting}; DialUp adapts models to dialect continua and dialect data to models~\cite{bafna2025dialup}, and North African dialects have been modelled from standard languages~\cite{toughrai2025modeling}. These approaches transform all inputs.
+\emph{Disagreement.} Agreement between predictors has been used to estimate accuracy on unlabelled data~\cite{platanios2014estimating,garg2022atc}, and querying labels where predictors disagree is the principle of query-by-committee~\cite{seung1992qbc}.

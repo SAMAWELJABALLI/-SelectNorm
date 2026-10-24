@@ -1,0 +1,13 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The factorisation separates disagreement detection from conditional advantage estimation, making their contributions to routing performance measurable. Transfer limits routing only for XLM-R on $S_5$ and $S_6$, where target estimates turn a loss of up to 3.3 points into a small gain; elsewhere the limitation persists with target labels and with 16 embedding components ($-1.2$ to $+1.1$). The win rate on disagreements varies more between encoder--dialect pairs (33--77\%) than the features resolve within a set; with 64--128 target labels, a set-level choice is on average within 0.3--0.7 points of SelectNorm, without a guarantee for every configuration. These are limits of the features and estimators evaluated, not evidence of intrinsic unpredictability. The results support corpus- and encoder-specific view selection with a safeguarded normaliser in this frozen-encoder setting; dialect, corpus, platform, content and normaliser effects are not isolated.
+
+\section{Limitations}
+\label{sec:limitations}
+\emph{Task and models.} All experiments use binary sentiment (the $K$-class form needs two win rates). Encoders are frozen and heads linear, and the conclusions are restricted to this setting; fine-tuning (not done; \textsc{+syn} is a partial probe) could change how often normalisation helps and how predictable the winning view is.
+\emph{Normaliser.} $T$ uses Tunisian resources; its safeguards were tuned on held-out TArC, so its intrinsic accuracy is \emph{not independently validated}; it is lower on NArabizi and unmeasured on MYC.
+\emph{Data.} Cross-corpus differences mix dialect with platform, topic, period and label distribution; we do not attribute them to dialect alone. TUNIZI, the NArabizi sentiment layer, MYC and MARBERTv2 state no licence; they are used for research only and not redistributed.
+\emph{Development.} A character $n$-gram pilot whose test results we inspected motivated the few-label setting.
+\emph{Analysis.} Mechanism intervals do not cover estimator refitting; the target-trained reference is not an upper bound on achievable performance. Features computed after $f(T(x))$ were not studied. Equivalence readings are post hoc and uncorrected for multiplicity; the examples are hand-picked.
+\emph{Costs.} Estimated from a token-length model and checked by timing on one 4-core CPU; relative costs on accelerators differ.

@@ -1,0 +1,48 @@
+% Compile with: latexmk -lualatex main.tex
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\newfontfamily\arabicfont[Script=Arabic,Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]{Amiri}
+\newcommand{\ar}[1]{\mbox{\textdir TRT\arabicfont #1}}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb,amsthm,nicefrac,bm}
+\usepackage{booktabs,multirow,siunitx}
+\usepackage{graphicx,xcolor,colortbl}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage[capitalise,noabbrev]{cleveref}
+\newtheorem{proposition}{Proposition}
+\newcommand{\pending}[1]{\textcolor{red}{[PENDING: #1]}}
+
+\title{SelectNorm: A Disagreement-Factorized Analysis of Per-Input\\ Normalization for Arabizi with Frozen Encoders}
+
+\author{Anonymous submission}
+
+\renewcommand{\dbltopfraction}{.95}\renewcommand{\dblfloatpagefraction}{.6}\renewcommand{\topfraction}{.9}\renewcommand{\floatpagefraction}{.6}\renewcommand{\textfraction}{.08}
+\begin{document}
+\maketitle
+\begin{abstract}
+A classifier trained on Arabic-script text can be applied to Latin-script Arabizi directly or after transliteration, and the better choice varies from input to input. We ask whether, with frozen encoders and linear heads, this choice can be learned per input and transferred from Tunisian to Algerian and Moroccan Arabizi, and, if not, why. We use an elementary identity: for binary labels the expected benefit of normalizing is the probability that the two views disagree times the margin by which the normalized view wins when they do. The identity separates disagreement detection, conditional advantage estimation and a cost-aware decision, so each can be measured on its own. With four frozen encoders, normalizing improves macro-F1 by 2--19 points on Tunisian and Algerian sets, and on Moroccan text its sign depends on the encoder. Learned per-input routing does not consistently exceed strong baselines or the better single view. Against a direct-gain router every paired 95\% interval lies within $\pm0.7$ points; against single views most intervals are inconclusive. Because routing must run the first pass before deciding, it costs more than either single view. The factorized analysis locates the limit for the features and estimators we test: disagreements are moderately predictable (AUC 0.62--0.74), but which view wins is weakly predictable from decision-point features (AUC at most 0.71, below 0.5 in two cases), also when a linear estimator is fitted on target labels. This is limited predictability under these choices, not unpredictability in principle. A bootstrap-classifier reference suggests that part of the oracle headroom is classifier variability. The usable signal is mostly set-level, which about a hundred labels recover.
+\end{abstract}
+
+\input{sections/intro}
+\input{sections/related}
+\input{sections/formulation}
+\input{sections/method}
+\input{sections/setup}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/limitations}
+
+\bibliography{references}
+
+\appendix
+\small
+\input{sections/appendix}
+\end{document}

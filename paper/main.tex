@@ -1,0 +1,71 @@
+% SelectNorm, ACIIDS 2027 (Springer LNCS/LNAI), built on the official llncs template v2.25.
+% Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Arabic-script snippets are pre-rendered vector PDFs (arabic/arabic.pdf, see arabic/snippets.py),
+% because the template's pdfLaTeX/T1 set-up cannot shape Arabic.
+\documentclass[runningheads]{llncs}
+%
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[varvw]{newtxmath}
+\usepackage{graphicx}
+%
+\usepackage{amsmath}
+\usepackage{booktabs,multirow,colortbl}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{nicefrac}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+\urlstyle{rm}
+%
+% Arabic-script snippets: \ar{key} or \ar[scale]{key}
+\makeatletter
+\newcommand\arsnip[3]{\expandafter\def\csname ar@#1\endcsname##1{%
+  \raisebox{-\dimexpr\height*#3/1000\relax}{\includegraphics[page=#2,scale=##1]{arabic/arabic.pdf}}}}
+\newcommand\ar[2][1]{\csname ar@#2\endcsname{#1}}
+\makeatother
+\input{arabic/ar_index}
+\newcommand{\Tcons}{T_{\rm cons}}
+% float placement only (no change to margins, font size or page geometry)
+\renewcommand{\topfraction}{.9}\renewcommand{\bottomfraction}{.6}\renewcommand{\textfraction}{.1}\renewcommand{\floatpagefraction}{.8}\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
+%
+\begin{document}
+%
+\title{SelectNorm: A Disagreement-Factorized Analysis of Per-Input Normalization for Arabizi with Frozen Encoders}
+\titlerunning{SelectNorm: Disagreement-Factorised Per-Input Normalisation}
+%
+% AUTHOR DATA ARE PLACEHOLDERS: to be completed by the authors (no names or affiliations were provided).
+\author{[AUTHOR NAME(S)]\inst{1}\orcidID{[ORCID]}}
+\authorrunning{[AUTHOR(S)]}
+\institute{[AFFILIATION, ADDRESS]\\ \email{[E-MAIL]}}
+%
+\maketitle
+%
+\begin{abstract}
+A classifier trained on Arabic-script text can be applied to Latin-script Arabizi directly or after transliteration; the better choice varies by input. We formulate this per-input choice as a cost-aware Bayes decision that separates sunk from avoidable inference cost, and factorise its expected benefit into the probability that the two views disagree and the margin by which the normalised view then wins, so that disagreement detection and conditional advantage estimation can be measured separately. With four frozen encoders and linear heads, trained on Tunisian data, normalising improves macro-F1 by 2--19 points on Tunisian and Algerian sets, and on Moroccan text its sign depends on the encoder. Learned per-input routing performs on par with a direct-gain router (every paired 95\% interval within $\pm0.7$ points) but does not consistently exceed the better single view, and because it reads the first pass before deciding, it costs more than either single view. Disagreements are moderately predictable (AUC 0.62--0.74), whereas the winning view is weakly predictable from decision-point features (AUC at most 0.71; point estimates below 0.5 in two cases), also when a linear estimator is fitted on target labels. The normaliser's safeguards matter more than the routing components. The factorisation thus locates the bottleneck of selective normalisation in estimating the conditional advantage.
+
+\keywords{Arabizi \and Transliteration \and Selective normalisation \and Learning to defer \and Frozen encoders \and Dialect transfer}
+\end{abstract}
+%
+\input{sections/intro}
+\input{sections/related}
+\input{sections/formulation}
+\input{sections/method}
+\input{sections/setup}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+%
+\bibliographystyle{splncs04}
+\bibliography{references}
+%
+\appendix
+\input{sections/appendix}
+\end{document}

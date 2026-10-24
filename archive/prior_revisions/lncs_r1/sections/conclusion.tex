@@ -1,0 +1,11 @@
+\section{Conclusion}
+\label{sec:conclusion}
+We studied per-input normalisation of Arabizi for frozen encoders with linear heads, using the disagreement factorisation of the expected benefit as an analysis device. Normalisation improves macro-F1 on Tunisian and Algerian Arabizi, and its effect on Moroccan text depends on the encoder. Learned per-input routing, including SelectNorm, does not consistently exceed the better single view or strong baselines, and it costs more than either single view because the first pass is sunk. Measured separately, disagreement is moderately predictable from decision-point features, whereas the conditional advantage of the normalised view is weakly predictable under the features and estimators evaluated, also when fitted on target labels. The usable signal is mostly set-level, which about a hundred target labels recover.
+
+\paragraph{Code and Reproducibility.}
+Code, configuration, the pre-registered protocol, logs, per-example predictions, supplementary Tables~S1--S8 and all figure data are at \url{[GITHUB_REPOSITORY_URL]}, with dependencies, commands, pinned encoder revisions and corpus commits, and instructions for obtaining the corpora, which are not redistributed. A script recomputes every test of Table~\ref{tab:main} from the exports. Quoted NArabizi sentences are from the UD release \url{https://github.com/UniversalDependencies/UD_Maghrebi_Arabic_French-Arabizi} (CC BY-SA 4.0); quoted TSAC sentences are from \url{https://github.com/fbougares/TSAC} (LGPL-3.0).
+
+\begin{credits}
+\subsubsection{\discintname}
+[To be confirmed by the authors.] The authors have no competing interests to declare that are relevant to the content of this article.
+\end{credits}

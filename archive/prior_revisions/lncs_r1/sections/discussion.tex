@@ -1,0 +1,17 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Findings.}
+Transfer matters in specific cells: for XLM-R on Algerian and Moroccan text, source $\hat\rho$ ranks direction at or below chance, and fitting it on the target turns a loss of up to 3.3 points into a small gain. Elsewhere the limit is in-domain, and richer variants did not change this (16 embedding components: $-1.2$ to $+1.1$, no consistent sign; gradient boosting, mE5 only: $-0.6$ to $+0.7$). The win rate on disagreements varies far more between encoder--dialect pairs (33--77\%) than our features resolve within a set, and with 64--128 target labels a set-level choice is on average within 0.3--0.7 points of SelectNorm with the same labels (descriptive). The factorisation adds a diagnosis, not an accuracy gain.
+
+\paragraph{Explanations.}
+Our reading is that decision-point features say little about which view is right, and that much of the oracle headroom is of the size classifier variability alone produces (M4). These are limits of the features and estimators evaluated; other features, fine-tuned representations or estimators might do better, and the results do not show that the conditional advantage is intrinsically unpredictable. Targeted labels estimate the shift more efficiently but cannot repair a weak ranking. Transliteration is known to help unseen scripts on average~\cite{muller2021unseen,moosa2023transliteration}; on Moroccan text its sign changes with the encoder. In practice, safeguards matter more than routing, and normalising is best decided per corpus or dialect.
+
+\section{Limitations}
+\label{sec:limitations}
+\emph{Task and models.} All experiments use binary sentiment, where the factorisation is exact with $\rho$ alone; the $K$-class form needs two conditional win rates. Encoders are frozen and heads linear, and all conclusions are restricted to this setting; fine-tuning could change how often normalisation helps and how predictable the winning view is. We did not fine-tune (CPU only); \textsc{+syn} is only a partial probe.
+\emph{Normaliser.} $T$ is built from Tunisian resources (TArC lexicon, Tunisian digit conventions such as \textit{8}\,=\,\ar{ha}). Its safeguards were tuned on the TArC held-out split and no independent transliteration test set was available, so its intrinsic accuracy is \emph{not independently validated}; it is lower on Algerian NArabizi, and with no Moroccan transliteration gold its validity on MYC is unmeasured.
+\emph{Data.} Cross-corpus differences mix dialect with platform, topic, period and label distribution; we do not attribute them to dialect alone. TUNIZI, the NArabizi sentiment layer and MYC state no licence, and MARBERTv2 has none on its model card; we use them for research only and do not redistribute them.
+\emph{Development.} The pipeline was first exercised with a character $n$-gram classifier whose test results we inspected; this motivated the few-label setting.
+\emph{Analysis.} Mechanism intervals cover test-sentence resampling, not estimator refitting; the target-label ceiling uses linear $\hat\rho$ on the same features. Features computed after $f(T(x))$ were not studied, as they need the second pass on every input. Equivalence statements are post hoc and not corrected for multiplicity. The qualitative examples are hand-picked.
+\emph{Costs.} Costs are estimated from a token-length model and checked by timing 200 sentences per set on one 4-core CPU; relative costs on accelerators differ, especially for short inputs.

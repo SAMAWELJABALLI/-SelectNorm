@@ -1,0 +1,17 @@
+\section{Introduction}
+\label{sec:intro}
+
+North African social-media text is written in Arabic script, in Latin-script Arabizi with digits standing for Arabic consonants (\textit{3}\,=\,\ar{ain}, \textit{7}\,=\,\ar{hha}), and with French segments inside the same sentence. A classifier trained on Arabic-script data can be applied to Arabizi as it is or after transliteration, which helps when it recovers known words and harms when it garbles French segments, negation or names. The choice is usually made once per dataset~\cite{muller2021unseen,moosa2023transliteration,artetxe2023revisiting}, although the better choice varies from input to input.
+
+We ask whether a frozen classifier can learn, without labels at inference time, \emph{for which inputs} normalisation pays off, and whether that decision transfers from Tunisian to Algerian and Moroccan Arabizi. Post-hoc deferral rules~\cite{jitkrittum2023cascade} and loss predictors~\cite{kim2020learningloss} estimate per-input benefit, but not how such a rule moves to a new dialect with scarce labels, nor which part of it fails.
+
+With binary labels, the expected benefit of normalising equals the probability that the two views disagree times the margin by which the normalised view wins when they do (Eq.~(\ref{eq:factor})). The first factor needs no labels, the second only labels on disagreements. The identity is elementary and underlies query-by-committee~\cite{seung1992qbc}; we use it to separate disagreement detection, conditional advantage estimation and a cost-aware decision, so that each can be measured. We ask whether per-input selection beats dataset-level choices and strong routers (RQ1) across corpora and dialects (RQ2), what it costs (RQ3), whether it agrees with predictions on human transliterations (RQ4), which factor limits it (RQ5), and how much a few target labels help (RQ6). Our contributions are:
+\begin{itemize}[leftmargin=1.2em,itemsep=0pt,topsep=2pt]
+\item a formulation of the per-input choice between two views as a cost-aware Bayes decision separating sunk from avoidable cost (Sect.~\ref{sec:formulation});
+\item a factorisation of the expected benefit into disagreement and conditional advantage, each measured separately for four encoders and three Maghrebi varieties (Sect.~\ref{sec:mechanism});
+\item a pre-specified comparison with confidence thresholding, direct-gain deferral, per-view loss prediction and a two-view ensemble, with corrected paired tests (Sect.~\ref{sec:main-results});
+\item a cost analysis, checked by timing, of what routing can save (the second pass) and what it cannot (the first) (Sect.~\ref{sec:cost});
+\item evidence on where source estimates break down in transfer to Algerian and Moroccan Arabizi (Sect.~\ref{sec:mechanism});
+\item a conservative Arabizi normaliser whose safeguards matter more than the routing components (Sect.~\ref{sec:fewlabel}; intrinsic accuracy not independently validated).
+\end{itemize}
+SelectNorm performs on par with direct-gain deferral but does not consistently beat the better single view; the factorisation shows that the bottleneck is estimating the conditional advantage, not detecting disagreement.

@@ -1,0 +1,9 @@
+# CPU verification and statistical reproduction.
+# Versions are those of the environment in which the archived runs were produced (Python 3.13.16).
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+wordfreq==3.1.1
+pytest==9.1.1

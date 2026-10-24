@@ -1,0 +1,145 @@
+{
+ "manuscript": "R3 (paper/compiled/SelectNorm_ACIIDS2027_R3.pdf)",
+ "claims": [
+  {
+   "id": 1,
+   "claim": "Macro-F1 of every system, encoder and set at λ = 0 (6.1)",
+   "table_or_figure": "Table 2 (`paper/tables/main.tex`)",
+   "archived_numbers": "`results/metrics/<enc>/runs_main.jsonl`",
+   "per_example": "`results/export/per_example/<enc>/<set>.csv.gz`; `results/predictions/<enc>/routes/`",
+   "run": "`main`; `experiments/run_all.sh`, `rerun_cost_fix.sh`",
+   "check": "C2 (2,240 seed-level F1 from exports = logs), C3 (352 cells)",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 2,
+   "claim": "Normalising gains 2–19 points on Tunisian/Algerian sets; sign on MYC depends on the encoder (abstract, 6.1)",
+   "table_or_figure": "Table 2",
+   "archived_numbers": "as 1",
+   "per_example": "as 1",
+   "run": "`main`",
+   "check": "B1−B0 from logs: 2.3 to 18.6 on $S_3$–$S_5$; MYC −8.0 to +8.7",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 3,
+   "claim": "SelectNorm-adapt vs B4: every paired 95% interval within ±0.7; Holm markers in Table 2 (6.1)",
+   "table_or_figure": "Table 2 markers; dossier Table S1 (`paired.tex`)",
+   "archived_numbers": "`results/statistics/<enc>/main.json`",
+   "per_example": "exports",
+   "run": "`experiments/run_stats.sh`",
+   "check": "C4 (400 values re-derived by `reproduce_stats.py` from exports, exact); C6",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 4,
+   "claim": "Routers cost more than either single view; savings only relative to two passes (6.2)",
+   "table_or_figure": "Fig. 2 (`paper/figures/figure2_lisible/`)",
+   "archived_numbers": "`paper/figures/pareto.csv` ← `runs_main.jsonl` (`rel_cost`)",
+   "per_example": "`results/predictions/*/probs.npz` (`__sec` timings)",
+   "run": "`main`",
+   "check": "C5 (324 values)",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 5,
+   "claim": "Measured timings (6.2)",
+   "table_or_figure": "text",
+   "archived_numbers": "`results/metrics/measured_cost_reported.json` (mE5 from the re-timing, others from `measured_cost.json`)",
+   "per_example": "`results/metrics/measured_cost_live/`, `measured_cost_mE5_retime_live/`",
+   "run": "`src/evaluation/measured_cost.py`",
+   "check": "not re-timed; 0 routing mismatches recorded in the files",
+   "status": "AVAILABLE_NOT_EXECUTED"
+  },
+  {
+   "id": 6,
+   "claim": "Disagreement AUC 0.62–0.74; source ρ̂ AUC ≤ 0.71, two below 0.5; target-trained reference 0.53–0.68 (6.3, M1–M2)",
+   "table_or_figure": "Table 3 (`mechanism.tex`), Fig. 3, dossier Table S4",
+   "archived_numbers": "`results/statistics/<enc>/mechanism_cons.json`",
+   "per_example": "needs `features/` (not distributed)",
+   "run": "`experiments/run_all_mech.sh`, `revision_analyses.sh`",
+   "check": "C6 (table regenerated from JSON = paper); Fig. 3 data = JSON (144 values, `paper/figures/figure3_horizontale/build_figure3_data.py`); AUCs themselves not recomputed",
+   "status": "VERIFIED (table ↔ JSON); AUC computation AVAILABLE_NOT_EXECUTED"
+  },
+  {
+   "id": 7,
+   "claim": "Benefit and headroom, noise reference (M3–M4)",
+   "table_or_figure": "Table 3; dossier Table S5",
+   "archived_numbers": "`mechanism_cons.json`, `results/statistics/noise_sensitivity.json`",
+   "per_example": "needs features",
+   "run": "as 6",
+   "check": "C6",
+   "status": "VERIFIED (table ↔ JSON)"
+  },
+  {
+   "id": 8,
+   "claim": "Ablations: safeguards −4.2 to −10.6; routing components ≤ 0.7 (6.4)",
+   "table_or_figure": "dossier Table S7 (`ablation.tex`), text",
+   "archived_numbers": "`runs_abl_*.jsonl`, `runs_main.jsonl`",
+   "per_example": "`results/predictions/<enc>/routes/abl_*`",
+   "run": "`experiments/run_all.sh`",
+   "check": "C6 (regenerated table = paper)",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 9,
+   "claim": "Few labels: −1.4 to +1.5 vs zero-shot, mean −0.01; targeted ≈ random (6.4)",
+   "table_or_figure": "text; dossier few-label figure (`paper/figures/fewlabel.csv`)",
+   "archived_numbers": "`runs_adapt.jsonl` (8 backends)",
+   "per_example": "`results/audit/` (sampled indices)",
+   "run": "`adapt`; `adapt_audit`",
+   "check": "C7 (200 values); range recomputed: −1.40 to +1.49, mean −0.007; audit 0 violations; logged samples respect cross-fitting (test)",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 10,
+   "claim": "RQ4: agreement with human transliteration 73–77% (6.4)",
+   "table_or_figure": "text",
+   "archived_numbers": "computed by `src/evaluation/tables.py` (`consistency`) from `probs.npz` and routes",
+   "per_example": "needs `data/prepared` (NArabizi gold)",
+   "run": "`main`",
+   "check": "not regenerated without data",
+   "status": "AVAILABLE_NOT_EXECUTED"
+  },
+  {
+   "id": 11,
+   "claim": "+syn regime results (6.4)",
+   "table_or_figure": "dossier Table S2 (`main_syn.tex`)",
+   "archived_numbers": "`results/metrics/<enc>+syn/runs_main.jsonl`",
+   "per_example": "exports `+syn`",
+   "run": "`main`",
+   "check": "C2, C3",
+   "status": "RECOMPUTED_FROM_ARCHIVE"
+  },
+  {
+   "id": 12,
+   "claim": "Normaliser accuracy (development results)",
+   "table_or_figure": "dossier Table S8 (`intrinsic.tex`)",
+   "archived_numbers": "`results/metrics/intrinsic.json`, `tarc_audit.json`",
+   "per_example": "needs TArC/NArabizi text",
+   "run": "`src/normalization/intrinsic_eval.py`",
+   "check": "C8 (15 cells)",
+   "status": "VERIFIED (table ↔ JSON)"
+  },
+  {
+   "id": 13,
+   "claim": "Linguistic conditions (taxonomy) (6.3)",
+   "table_or_figure": "dossier Table S6 (`taxonomy.tex`)",
+   "archived_numbers": "`results/statistics/<enc>/taxonomy.csv`",
+   "per_example": "needs text",
+   "run": "`src/evaluation/taxonomy.py`",
+   "check": "C6",
+   "status": "VERIFIED (table ↔ CSV)"
+  },
+  {
+   "id": 14,
+   "claim": "Qualitative examples (6.5)",
+   "table_or_figure": "Table 4 (`qualitative.tex`)",
+   "archived_numbers": "`results/qualitative/examples_mE5.json` (text masked)",
+   "per_example": "`docs/aciids2027/EXAMPLE_PROVENANCE.md`",
+   "run": "—",
+   "check": "posteriors and routing per seed in JSON",
+   "status": "VERIFIED (numbers ↔ JSON, by hand during R1)"
+  }
+ ]
+}

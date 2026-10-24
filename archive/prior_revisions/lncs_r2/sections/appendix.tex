@@ -1,0 +1,8 @@
+\section{Proofs}
+\label{app:proofs}
+
+\noindent\emph{Bayes rule and factorisation.} Given $z$, the conditional risk of $g(z)=a$ is $\mathbb E[e_a\mid z]+\lambda\,\mathbb E[c_0+c_T\mid z]+\lambda\bar c(z)\,a$, so $a=1$ is strictly better iff $B(z)>\lambda\bar c(z)$; pointwise minimisation minimises Eq.~(\ref{eq:risk}). If $D=0$, $e_0=e_1$; if $D=1$ and $y\in\{0,1\}$, $e_0=W$, $e_1=1-W$; hence $e_0-e_1=D(2W-1)$, which gives Eq.~(\ref{eq:factor}). For $K$ classes, $e_0-e_1=D(\mathbf 1[\hat y_1{=}y]-\mathbf 1[\hat y_0{=}y])$. \qed
+
+\emph{Proposition~\ref{prop:regret}.} Where $\hat g\neq g^\star$, $\hat B-\lambda\bar c$ and $B-\lambda\bar c$ differ in sign (or $\hat B=\lambda\bar c$), so the conditional excess risk is $|B-\lambda\bar c|\le|\hat B-B|$. Hence $R(\hat g)-R(g^\star)\le\mathbb E|\hat B-B|$, and $\hat B-B=(\hat\pi-\pi)(2\rho-1)+2\hat\pi(\hat\rho-\rho)$ with the triangle inequality concludes. \qed
+
+\emph{Proposition~\ref{prop:efficiency}.} With $q_i=\sigma(\operatorname{logit}\hat\rho(z_i)+b)$, a labelled target example has log-likelihood $D_i[W_i\log q_i+(1-W_i)\log(1-q_i)]$ and Fisher information $D_i\,q_i(1-q_i)$ about $b$, with expectation $P_Q(D{=}1)\,\mathbb E_Q[q(1-q)\mid D{=}1]$ under random sampling and $\mathbb E_Q[q(1-q)\mid D{=}1]$ among disagreements, which are observable without labels; information adds over draws. \qed

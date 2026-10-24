@@ -1,0 +1,7 @@
+{
+ "backend": "enc:FacebookAI/xlm-roberta-base",
+ "syn": true,
+ "C": 100,
+ "dev_macro_f1": 0.7616051048589481,
+ "temperature": 0.6219471668293158
+}

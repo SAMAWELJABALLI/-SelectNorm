@@ -1,0 +1,16 @@
+{
+ "model": "UBC-NLP/MARBERTv2",
+ "revision": "fe88db9db8ccdb0c4e1627495f405c44a5f89066",
+ "n_timed": 9000,
+ "intercept_s": 0.015774415164734348,
+ "per_token_s": 0.00025360721065651186,
+ "r2": 0.8084714088604334,
+ "median_s": 0.01992399100026887,
+ "threads": 4,
+ "cpu": "x86_64",
+ "torch": "2.14.1+cu130",
+ "updated": {
+  "enc_UBC-NLP__MARBERTv2": "updated",
+  "enc_UBC-NLP__MARBERTv2+syn": "updated"
+ }
+}

@@ -1,0 +1,37 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\begin{table}[t]
+\centering
+\caption{Data after de-duplication and near-copy removal (character 3-gram cosine $\ge0.9$ against every training or policy sentence). $S_5^{\textsc{ar}}$: human Arabic-script transliteration of $S_5$~\cite{touileb2021interplay}.}
+\label{tab:data}
+\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+Set & Variety, script & $N$ & Pos.\% & Role\\
+\midrule
+TSAC-\textsc{ar} & Tunisian, Arabic & 5{,}564 & 45.0 & train $f$ (90/10)\\
+TSAC-\textsc{lat} train & Tunisian, Latin & 6{,}204 & 57.3 & policy pool\\
+$S_3$ TSAC-\textsc{lat} test & Tunisian, Latin & 1{,}425 & 55.2 & test\\
+$S_4$ TUNIZI & Tunisian, Latin & 2{,}875 & 48.8 & test\\
+$S_5$ NArabizi & Algerian, Latin & 729 & 52.0 & test\\
+$S_5^{\textsc{ar}}$ NArabizi gold & Algerian, Arabic & 729 & 52.0 & RQ4\\
+$S_6$ MYC-\textsc{lat} & Moroccan, Latin & 4{,}191 & 66.4 & test\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Data and classifiers.}
+$f$ is trained on Arabic-script TSAC~\cite{medhaffar2017tsac}; the human Latin-script TSAC training comments, never seen by $f$, form the policy pool (Table~\ref{tab:data}). Test sets cover the same corpus ($S_3$), another Tunisian corpus and platform ($S_4$, TUNIZI~\cite{fourati2021tunizi}), Algerian ($S_5$, NArabizi~\cite{seddah2020narabizi,touileb2021interplay}) and Moroccan Arabizi ($S_6$, MYC~\cite{jbel2023myc}). Mixed-script sentences (minority alphabet $>20\%$) are excluded. $f_\theta$ is a logistic regression on mean-pooled frozen representations of XLM-R base~\cite{conneau2020xlmr}, mE5 base~\cite{wang2024me5}, LaBSE~\cite{feng2022labse} or MARBERTv2~\cite{abdulmageed2021marbert} at pinned revisions, with regularisation and a temperature~\cite{guo2017calibration} fitted on the 10\% Arabic-script development split. No Latin-script sentence trains $f$. In an exploratory regime (\textsc{+syn}), logged as a deviation before it was run, $f$ also sees a synthetic Latin rendering of each training sentence.
+
+\paragraph{Systems.}
+B0 keeps $x$; B1 always normalises with $\Tcons$; B2 routes at random at SelectNorm's selection rate (20 draws); B3 thresholds the confidence of $p_0$; B4 estimates $B(z)=P(\text{help}\mid z)-P(\text{harm}\mid z)$ directly, a post-hoc deferral rule~\cite{jitkrittum2023cascade}; B4b predicts each view's error~\cite{kim2020learningloss}; B6 is the oracle; R averages both views' probabilities. SelectNorm-src uses source estimates; SelectNorm-adapt, the primary system, re-estimates $\hat\pi$ on unlabelled target text with two-fold cross-fitting by source sentence. All thresholds are tuned per $\lambda$ on the policy development split (variant: Bayes threshold $\lambda\bar c$), never on a test set.
+
+\paragraph{Few-label setting.}
+Each test set is split into two folds by source sentence; to predict one fold, $k\in\{8,\ldots,128\}$ labels are drawn from the other, at random or among its disagreements, and re-estimate $b$ (SelectNorm), re-fit B4, re-tune B3, or choose B0 or B1 for the fold (set-level choice). A replay of all 8{,}000 draws found no sentence whose own label informed its prediction. On $S_5$ at $k{=}128$ only 97--116 disagreements exist per fold, so 375 targeted draws are smaller than $k$. Each $k$ uses 5 draws $\times$ 5 seeds and the $\lambda=0$ threshold.
+
+\paragraph{Mechanisms, statistics and costs.}
+We measure (M1) the AUC of $\hat\pi$ for disagreements; (M2) the AUC of $\hat\rho$ for the winning view among disagreements, its calibration gap, and a \emph{target-trained cross-validated reference} (same features and estimator family, 5-fold cross-validation on target labels); (M3) the gain over the best view of the rule $\hat\rho>\nicefrac12$; (M4) the oracle headroom, against the headroom between two classifiers trained on bootstrap resamples and applied to the same input. Intervals are 95\% percentile intervals from 1{,}000 seed-averaged bootstrap resamples of test sentences, without refitting. Macro-F1 is primary; results average five seeds (policy split and random draws). Differences are tested with a paired bootstrap over source sentences~\cite{koehn2004bootstrap,dror2018hitchhiker} (10{,}000 resamples) with Holm correction over the 20 main comparisons per encoder. A difference is \emph{relevant} if it is at least one point and significant after correction; the protocol's wording requires only the unadjusted interval to exclude zero, which coincides in the primary regime (\textsc{+syn}: both reported). Non-significance is not read as equivalence. Costs are relative to one pass of $f$ on $x$: $c_T$ is measured; $c_0,c_1$ are \emph{estimated} by a per-encoder model $a+b\cdot\text{tokens}$ fitted to batch-1 CPU latencies and checked by end-to-end timing.
+
+\paragraph{Status of analyses.}
+Pre-specified: main comparisons and statistics, $\lambda$ grid, embedding, boosting and $T_{\rm lex}$ ablations, few-label setting and RQ4. Exploratory, logged after the first mE5 results: $T_{\rm cov}$, \textsc{+syn} and M1--M4. Added in revision: mechanism intervals, sensitivity and equivalence readings, end-to-end timing, the normaliser audit and the input-dependent cost threshold.

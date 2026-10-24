@@ -1,0 +1,10 @@
+id	sent	arabizi	class	coda
+0	0	barcha	arabizi	برشا
+0	0	3jebni	arabizi	عجبني
+0	0	film	foreign	film
+0	0	<eos>	_	_
+1	1	behi	arabizi	باهي
+1	1	barcha	arabizi	برشا
+1	1	<eos>	_	_
+2	2	yesser	arabizi	يسر
+2	2	<eos>	_	_

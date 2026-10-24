@@ -1,0 +1,77 @@
+\begin{table}[!htb]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\input{tables/ablation}
+\caption{Ablations (mE5, $\lambda=0$, macro-F1, mean of five seeds). Rows with ``always'' are B1 with that normalizer.}
+\label{tab:ablation}
+\end{table}
+\begin{table}[!htb]
+\centering\footnotesize\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{\input{tables/intrinsic}}
+\caption{Normalizer accuracy against human Arabic-script transliterations: \emph{development} results, not an independent test. TArC: 20\% of sentences, not used for the lexicon $\mathcal L$ but used to design the safeguards. NArabizi: whole corpus, nothing fitted to it, but scored during development. ``Foreign kept'': precision/recall of keeping annotated French/English tokens in Latin script; negation: accuracy on circumfix-negated verbs. Audit: no hand-listed word occurs only in the development split; on the 87\% of tokens no rule touches, word accuracy is 65.8\%; with the splits' roles swapped, negation is kept in 94.4\% and foreign precision/recall is 95/77.}
+\label{tab:intrinsic}
+\end{table}
+\begin{table*}[t]
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{tables/paired}
+\caption{Paired differences in macro-F1 (SelectNorm-adapt minus baseline, $\lambda=0$, seed-averaged) with 95\% paired-bootstrap intervals (10{,}000 resamples of test sentences). $^{*}$: Holm-corrected $p<0.05$ over the protocol's 20 comparisons per encoder. $^{\dagger}$: the interval lies inside $(-1,+1)$, the protocol's relevance margin; reading this as equivalence is post hoc and not corrected for multiplicity. Intervals without either mark are inconclusive about both difference and equivalence.}
+\label{tab:paired}
+\vspace{2mm}
+\centering\scriptsize\setlength{\tabcolsep}{3.5pt}
+\input{tables/main_syn}
+\caption{As \cref{tab:main}, with $f$ also trained on synthetic Latin renderings (\textsc{+syn}, exploratory regime).}
+\label{tab:main-syn}
+\end{table*}
+\begin{table*}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tables/routing}}
+\caption{Routing behaviour (mE5, $\lambda=0$): selection rate, harmful transformations per 100 inputs, share of oracle opportunities captured, and estimated cost relative to B0 (\cref{app:repro}). Help/harm: number of inputs where normalization corrects/introduces an error.}
+\label{tab:routing}
+\vspace{2mm}
+\centering\scriptsize\setlength{\tabcolsep}{4pt}
+\input{tables/mechanism_ci}
+\caption{95\% intervals for the mechanism measurements of \cref{tab:mechanism} (1{,}000 bootstrap resamples of test sentences, seed-averaged within each resample; estimators not refitted).}
+\label{tab:mechanism-ci}
+\vspace{2mm}
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{tables/noise_sensitivity}
+\caption{Sensitivity of the oracle reference (range over the four sets). ``Views headroom'': oracle over $x$ and $T(x)$ minus the best view; other columns: the same for two classifiers differing only in their training sample (bootstrap as in \cref{tab:mechanism}, 80\%/50\% subsamples, or bootstrap with $C\times3$ or $C/3$), applied to $x$; mean of 10 pairs.}
+\label{tab:noise}
+\end{table*}
+\section{Proofs}
+\label{app:proofs}
+
+\paragraph{Bayes rule (\cref{eq:bayes}).}
+For fixed $z$, the conditional risk of $g(z)=a$ is $\mathbb E[e_a\mid z]+\lambda\,\mathbb E[c_0+c_T\mid z]+\lambda\bar c(z)\,a$, where the middle term does not depend on $a$. Choosing $a=1$ is strictly better iff $\mathbb E[e_1\mid z]+\lambda\bar c(z)<\mathbb E[e_0\mid z]$, i.e.\ $B(z)>\lambda\bar c(z)$. Minimizing pointwise minimizes \cref{eq:risk}. \qed
+
+\paragraph{Factorization (\cref{eq:factor}).}
+If $D=0$ then $\hat y_0=\hat y_1$ and $e_0=e_1$, so $e_0-e_1=D(e_0-e_1)$. If $D=1$ and $y\in\{0,1\}$, then $\hat y_0=1-\hat y_1$, hence $e_0=W$ and $e_1=1-W$, and $e_0-e_1=2W-1$. Therefore $B(z)=\mathbb E[D(2W-1)\mid z]=P(D{=}1\mid z)\,\big(2P(W{=}1\mid D{=}1,z)-1\big)$. For $K$ classes, $e_0-e_1=D\big(\mathbf 1[\hat y_1{=}y]-\mathbf 1[\hat y_0{=}y]\big)$, which gives $\pi(\rho_1-\rho_0)$. \qed
+
+\paragraph{\Cref{prop:regret}.}
+For any $z$, if $\hat g(z)=g^\star(z)$ the conditional excess risk is zero. Otherwise it equals $|B(z)-\lambda\bar c(z)|$, and since $\hat B-\lambda\bar c$ and $B-\lambda\bar c$ have different signs (or $\hat B=\lambda\bar c$), $|B-\lambda\bar c|\le|\hat B-B|$. Taking expectations gives $R(\hat g)-R(g^\star)\le\mathbb E|\hat B-B|$. Writing $\hat B-B=\hat\pi(2\hat\rho-1)-\pi(2\rho-1)=(\hat\pi-\pi)(2\rho-1)+2\hat\pi(\hat\rho-\rho)$ and applying the triangle inequality concludes. \qed
+
+\paragraph{\Cref{prop:efficiency}.}
+Write $r_i=\operatorname{logit}\hat\rho(z_i)$ and $q_i=\sigma(r_i+b)$. A labelled target example contributes the log-likelihood $D_i\big[W_i\log q_i+(1-W_i)\log(1-q_i)\big]$: when $D_i=0$ the label is uninformative about $b$ because $e_0=e_1$ regardless of $y_i$, and the model of $W$ is defined only on disagreements. The per-example Fisher information about $b$ is $D_i\,q_i(1-q_i)$. Under random sampling from $Q$, its expectation is $P_Q(D{=}1)\,\mathbb E_Q[q(1-q)\mid D{=}1]$; under sampling from $Q(\cdot\mid D{=}1)$, which is possible without labels because $D$ is observable, it is $\mathbb E_Q[q(1-q)\mid D{=}1]$. Information is additive over independent draws, so the ratio is $1/P_Q(D{=}1)$. \qed
+
+The proposition concerns the scalar shift only. It does not claim that a shifted $\hat\rho$ recovers the target-optimal rule; that depends on whether the shift is close to a constant in logit space, which the experiments test.
+
+
+
+
+
+
+\section{Reproducibility}
+\label{app:repro}
+\paragraph{Encoders and software.} Encoders are loaded at pinned revisions with SHA-256-verified weights: XLM-R base \texttt{e73636d} (MIT), mE5 base \texttt{d128750} (MIT), LaBSE \texttt{836121a} (Apache-2.0), MARBERTv2 \texttt{fe88db9} (no licence stated). Representations: mean of the last layer over non-padding tokens, at most 128 subwords, $\ell_2$-normalized; mE5 inputs carry \texttt{query:}. Python 3, scikit-learn 1.9.1, NumPy 2.5.3; code, configuration, logs and the protocol are released.
+
+\paragraph{Classifier $f$.} $\ell_2$-regularized logistic regression; $C\in\{0.01,0.03,\ldots,100\}$ selected by macro-F1 on TSAC-\textsc{ar} dev; temperature fitted on the same split by NLL. The \textsc{+syn} regime adds the synthetic Latin rendering $G(x)$ of every training and dev sentence.
+
+\paragraph{Router.} $\hat\pi,\hat\rho$: logistic regression on standardized $z$ ($C=1$); 17 features: confidence, margin and entropy of $p_0$ (\textsc{conf}); length, Latin and Arabic shares, digit-as-letter, emoji and upper-case rates (\textsc{script}); lexicon, rule-fallback, ambiguity, protected, negation, laughter and changed-token rates and lexicon entropy of $T$ (\textsc{trel}). Policy split 80/20 of TSAC-\textsc{lat} train with seed $1000+s$; the 20\% part tunes thresholds. 
+
+\paragraph{Few-label audit.} \texttt{check\_fewlabel.py} replays every targeted and random label draw of all eight encoder--regime runs (8{,}000 draws), saves the sampled source identifiers, and counts any sampled label from the scored fold, any shared source identifier or normalized text between sampled and scored sentences, and any targeted sentence that is not a disagreement: none. A rerun of \texttt{adapt.py} for mE5 with index logging matches the replay in all 1{,}000 draws and the archived results in all 2{,}500 rows. In 375 targeted draws ($S_5$, $k{=}128$) fewer than $k$ disagreements were available.
+
+\paragraph{Per-example exports.} \texttt{results/export/per\_example} gives, per encoder, regime and set, sentence and source identifiers, labels, both views' probabilities and every system's $\lambda{=}0$ prediction per seed. \texttt{scripts/reproduce\_stats.py} (NumPy and pandas only) recomputes from them every difference, interval and $p$-value of \cref{tab:main,tab:paired} for all four encoders exactly.
+
+\paragraph{Mean vs input-dependent cost (exploratory).} Since $T(x)$ is known at the decision point, the token model also gives each input's own avoidable cost $c_1(x)$. Replacing $\lambda\bar c$ by $\lambda c_1(x)$ ($\lambda>0$, all encoders, sets, seeds) lowers cost by 0--0.11 passes and changes macro-F1 by $-2.0$ to $+0.6$ (means $-0.03$ and $-0.13$); it is no worse on both in 29 of 80 cells and trades accuracy for cost in 48: it moves along the frontier.
+
+\paragraph{Costs.} $c_T$ is the measured normalizer time (about 0.4\% of a pass). $c_0,c_1$ are \emph{estimated} per sentence by a per-encoder model $a+b\cdot$tokens fitted to measured batch-1 latencies of 300 sentences per set and view (e.g.\ mE5 $a=19.6$\,ms, $b=0.32$\,ms/token, $R^2=0.68$), as used in \cref{fig:pareto,tab:routing}. \texttt{measured\_cost.py} runs the deployed pipeline on raw text at batch size 1 with nothing cached (pinned encoder, the trained head refitted deterministically, which reproduces the cached probabilities exactly, normalizer, features, each seed's router and $\lambda{=}0$ threshold, second pass only when selected). On all 9{,}220 test sentences, none of the 184{,}400 live routing decisions (4 encoders $\times$ 5 seeds) or final predictions differs from the archived ones (probabilities within $1.6\cdot10^{-4}$). Timed back to back on 200 sentences per set: B0 22--31\,ms; relative costs within $-0.02$ to $+0.05$ of the estimates for B1 and R, $+0.03$ to $+0.07$ for SelectNorm (features are not in the token model). mE5 was re-timed after a concurrent job overlapped it (both runs archived).
+

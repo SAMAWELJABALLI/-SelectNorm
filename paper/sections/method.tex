@@ -1,0 +1,77 @@
+\section{SelectNorm}
+\label{sec:method}
+
+\begin{figure}[t]
+\centering
+\input{figures/pipeline}
+\Description{Block diagram of SelectNorm. Upper lane, inference: the Arabizi input x goes to the first pass of the frozen classifier and to the conservative normaliser with metadata, whose costs c0 and cT are sunk; both feed the decision features z, then the factorised benefit, then cost-aware routing. If g is 0, the first-pass prediction is returned; if g is 1, a dashed optional second pass on T(x), with avoidable cost c1, produces the prediction. Lower lane, offline: the disagreement estimator, the conditional advantage estimator, the threshold and the optional few-label recalibration.}
+\caption{SelectNorm. Upper lane (inference): $f_\theta(x)$ and $\Tcons(x)$ always run, so $c_0$ and $c_T$ are incurred before the decision $g$; the dashed second pass $f_\theta(T(x))$ is the only avoidable cost and runs only when $g=1$. Lower lane (grey, offline): $\hat\pi$ (label-free, optionally adapted on unlabelled target text), $\hat\rho$ (source disagreements), the threshold $t_\lambda$ and the optional few-label shift of $\hat\rho$.}
+\label{fig:arch}
+\end{figure}
+
+\paragraph{Module A: conservative normaliser.}
+$T$ changes only Latin-script tokens (Algorithm~\ref{alg:norm}). A token is looked up in a lexicon of Arabizi$\to$CODA pairs built from 80\% of TArC~\cite{gugliotta2022tarc}; unseen tokens fall back to Tunisian character rules (\textit{3}$\to$\ar{ain}, \textit{7}$\to$\ar{hha}, \textit{9}$\to$\ar{qaf}, \textit{5}$\to$\ar{kha}, \textit{ch}$\to$\ar{shin}, word-initial vowels to alef, medial short vowels dropped). Three safeguards define $\Tcons$: (i)~\emph{protection} of French and English tokens, decided from word frequencies against TArC evidence, with short or function-like tokens (\textit{la}, \textit{ma}, \textit{el}) read in the language of their context; (ii)~\emph{negation}: frequent negators (\textit{mouch}, \textit{mech}) are mapped by a fixed list and the circumfix \textit{ma\ldots ch} is split as \ar{ma}\,+\,stem\,+\,\ar{shin}; (iii)~\emph{non-lexical cues}: laughter (\textit{hhhh}, \textit{mdr}) becomes \ar{laugh}. $T_{\rm rule}$ (rules only) and $T_{\rm lex}$ (no safeguards) are controls. Each call also returns token-level metadata $m$ (counts per branch, ambiguous characters).
+
+\paragraph{Module B: benefit estimation.}
+The decision-point features $z$ form three groups: \emph{conf} (maximum probability, margin and entropy of the temperature-scaled $p_0$), \emph{script} (length, Latin share, digits used as letters, emoji and upper-case rates) and \emph{trel} (the metadata $m$ as rates per Latin token, and the share of changed tokens). $\hat\pi$ and $\hat\rho$ are logistic regressions on standardised $z$ (gradient boosting as ablation); $\hat\rho$ is fitted on the disagreements of the policy split only (Algorithm~\ref{alg:train}).
+
+\paragraph{Module C: cost-aware routing.}
+At inference (Algorithm~\ref{alg:infer}) $\hat B(z)=\hat\pi(z)(2\hat\rho(z)-1)$ is compared with a threshold $t_\lambda$: either the Bayes threshold $\lambda\bar c$ of Eq.~(\ref{eq:bayes}), or, as for every baseline, a threshold tuned for each $\lambda$ on the policy development split. No threshold is tuned on target data. The expected inference cost is $C_f+C_T+O(|z|)+\mathbb E[g]\,C_f$, with encoder cost $C_f$; only the last term is avoidable.
+
+\begin{algorithm}[t]
+\small
+\caption{Conservative normalisation $\Tcons$}
+\label{alg:norm}
+\begin{algorithmic}[1]
+\Require sentence $x$, lexicon $\mathcal L$, rules $R$, frequency lists $F$
+\Ensure $T(x)$, metadata $m$
+\State $\tau\gets$ tokens of $x$; $\kappa\gets$ share of foreign tokens in $\tau$ by $F$ vs.\ $\mathcal L$
+\For{each Latin-script token $t\in\tau$}
+  \If{$t$ is laughter} emit \ar{laugh}
+  \ElsIf{$t$ is foreign (if short or function-like: iff $\kappa>\nicefrac12$)} keep $t$
+  \ElsIf{$t$ is a listed negator} emit its fixed form
+  \ElsIf{$t\in\mathcal L$} emit $\mathcal L(t)$
+  \ElsIf{$t$ matches \textit{ma\ldots ch}} emit \ar{ma}\,$R(\text{stem})$\,\ar{shin}
+  \Else\ emit $R(t)$ and count ambiguous characters
+  \EndIf
+  \State update $m$ with the branch taken
+\EndFor
+\State \Return joined output, $m$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}[t]
+\begin{minipage}[t]{0.555\textwidth}
+\begin{algorithm}[H]
+\footnotesize
+\caption{Training}
+\label{alg:train}
+\begin{algorithmic}[1]
+\Require $f$, $T$, labelled policy split $\mathcal P$; optional: unlabelled target fold $\mathcal U$; $k$ labelled target disagreements $\mathcal K$
+\Ensure $\hat\pi$, $\hat\rho$ (and shift $\hat b$)
+\For{$x\in\mathcal P\cup\mathcal U$} compute $p_0,p_1$, $z$, $D$ \EndFor
+\State $\hat\rho\gets$ fit $P(W{=}1\mid z)$ on $\{i\in\mathcal P: D_i{=}1\}$
+\State $\hat\pi\gets$ fit $P(D{=}1\mid z)$ on $\mathcal P$\Statex\hspace{\algorithmicindent}(or on $\mathcal P\cup\mathcal U$, equal total weight)
+\If{$\mathcal K\neq\emptyset$} \Comment{few-label shift}
+  \State $\hat b\gets\arg\max_b\,\ell(b)$, with $r_i=\operatorname{logit}\hat\rho(z_i)$:\Statex\hspace{\algorithmicindent}\hspace{\algorithmicindent}$\ell(b)=\sum_{\mathcal K}\log\mathrm{Bern}(W_i;\sigma(r_i{+}b))-b^2\!/2$
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.43\textwidth}
+\begin{algorithm}[H]
+\footnotesize
+\caption{Inference}
+\label{alg:infer}
+\begin{algorithmic}[1]
+\Require $x$, $f$, $T$, $\hat\pi$, $\hat\rho$, threshold $t_\lambda$ ($\lambda\bar c$ or tuned on policy-dev)
+\Ensure label $\hat y$, action $g$, score $\hat B$
+\State $p_0\gets f(x)$; $(x',m)\gets T(x)$ \Comment{sunk}\State $z\gets z(x,p_0,m)$
+\State $\hat B\gets\hat\pi(z)(2\hat\rho(z)-1)$\State $g\gets\mathbf 1[\hat B>t_\lambda]$
+\If{$g=1$} $\hat y\gets\mathbf 1[f(x')>\nicefrac12]$
+\Else\ $\hat y\gets\mathbf 1[p_0>\nicefrac12]$ \EndIf
+\State \Return $\hat y,g,\hat B$
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+\end{figure}

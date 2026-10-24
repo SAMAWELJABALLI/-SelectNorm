@@ -1,0 +1,65 @@
+\section{Problem Formulation}
+\label{sec:formulation}
+
+\paragraph{Setting.}
+Let $x$ be an input sentence with binary label $y\in\{0,1\}$, $T$ a deterministic normalizer that maps Latin-script Arabizi to Arabic script, and $f_\theta$ a frozen classifier with posterior $p_a=f_\theta(v_a)$ on view $v_0=x$ or $v_1=T(x)$ and decision $\hat y_a=\mathbf 1[p_a>\nicefrac12]$.
+A routing policy $g:\mathcal Z\to\{0,1\}$ selects the view whose decision is returned, $\hat y(x)=\hat y_{g(z)}$, where $z=z(x)$ collects the features available at the \emph{decision point}: after $f_\theta(x)$ and $T(x)$ have been computed and before $f_\theta(T(x))$ is run.
+Let $e_a=\mathbf 1[\hat y_a\neq y]$. Measured inference costs, relative to the mean cost of $f_\theta(x)$, are $c_0(x)$ for the first pass, $c_T(x)$ for the normalizer and $c_1(x)$ for the second pass $f_\theta(T(x))$. Because $z$ contains $p_0$ and normalizer metadata, $c_0+c_T$ is \emph{sunk} when $g$ is decided; only $c_1$ is \emph{avoidable}.
+
+\paragraph{Objective and Bayes rule.}
+For a trade-off $\lambda\ge0$ we seek
+\begin{equation}
+\min_g\;\mathbb E\big[e_{g(z)}+\lambda\,\big(c_0+c_T+c_1\,g(z)\big)\big].
+\label{eq:risk}
+\end{equation}
+The sunk term does not depend on $g$, so conditioning on $z$ shows that the minimizer is
+\begin{equation}
+g^\star(z)=\mathbf 1\big[B(z)>\lambda\,\bar c(z)\big],
+\label{eq:bayes}
+\end{equation}
+where $B(z)=\mathbb E[e_0-e_1\mid z]$
+and $\bar c(z)=\mathbb E[c_1\mid z]$, the expected \emph{avoidable} cost. $B(z)$ is the expected \emph{benefit} of normalizing. The sunk cost matters when routing is compared with other systems: a router that reads $p_0$ and $m$ costs at least $c_0+c_T$, whereas never normalizing costs $c_0$ and always normalizing costs $c_T+c_1$. Per-input routing of this kind can therefore save compute only relative to running both views, never relative to a single view. It is the quantity estimated by post-hoc deferral rules \citep{jitkrittum2023cascade} and, for input transformations, by loss predictors \citep{kim2020learningloss}; estimating it directly is therefore not new.
+
+\paragraph{Disagreement factorization (elementary).}
+Let $D=\mathbf 1[\hat y_0\neq\hat y_1]$ and $W=\mathbf 1[\hat y_1=y]$.
+Because $e_0=e_1$ whenever $D=0$, and because with binary labels exactly one view is correct whenever $D=1$,
+\begin{align}
+B(z)&=\pi(z)\,\big(2\rho(z)-1\big),\label{eq:factor}\\
+\pi(z)&=P(D{=}1\mid z),\nonumber\\
+\rho(z)&=P(W{=}1\mid D{=}1,z).\nonumber
+\end{align}
+(With $K$ classes, $B=\pi\,(\rho_1-\rho_0)$ with $\rho_a$ the probability that view $a$ is right given a disagreement.)
+The identity is elementary and is implicit in disagreement-based methods such as query-by-committee \citep{seung1992qbc}; we do not claim it as a theoretical contribution. We use it as an \emph{analysis device}: the two factors have different data requirements and can be measured separately:
+$\pi$ depends on the two views' predictions only, so it can be estimated on \emph{unlabeled} text once both views are run offline;
+$\rho$ needs labels, but only on disagreements, since labels of agreeing inputs carry no information about $B$.
+
+\paragraph{Three sub-problems.}
+\Cref{eq:bayes,eq:factor} split selective normalization into \emph{disagreement detection} ($\pi$), \emph{conditional advantage estimation} ($\rho$) and a \emph{cost-aware decision} ($\lambda\bar c$). Both estimators are fitted by minimizing the log-loss, a proper scoring rule, on the policy split: $\hat\pi$ on all inputs with target $D$, $\hat\rho$ on disagreements with target $W$. The plug-in rule is $\hat g=\mathbf 1[\hat\pi(2\hat\rho-1)>\lambda\bar c]$. Two consequences follow directly.
+
+\emph{(i) At zero cost the rule ignores $\pi$.} For $\lambda=0$ and $\hat\pi>0$, $\hat g=\mathbf 1[\hat\rho>\nicefrac12]$: the decision depends only on the conditional advantage, so re-estimating $\pi$ can change decisions only at $\lambda>0$.
+
+\emph{(ii) Errors of each factor are weighted by the other.}
+\begin{proposition}[Plug-in regret]
+\label{prop:regret}
+Let $R(g)$ be the risk in \cref{eq:risk}. Then
+\[
+R(\hat g)-R(g^\star)\le\mathbb E\big[\,|2\rho-1|\,|\hat\pi-\pi|+2\hat\pi\,|\hat\rho-\rho|\,\big].
+\]
+\end{proposition}
+The usual plug-in argument gives $R(\hat g)-R(g^\star)\le\mathbb E|\hat B-B|$, and $\hat B-B=(\hat\pi-\pi)(2\rho-1)+2\hat\pi(\hat\rho-\rho)$ (\cref{app:proofs}). Errors in $\rho$ therefore cost most where disagreements are frequent. Errors in $\pi$ cost little when neither view dominates ($\rho\approx\nicefrac12$), which is also where any rule gains little. The bound is the standard plug-in argument applied to \cref{eq:factor} and is not a new learning-theoretic result; we use it only to motivate measuring the two estimation errors separately (\cref{sec:mechanism}).
+
+\paragraph{Assumptions and limits.}
+Exactness of \cref{eq:factor} requires binary labels and the 0-1 loss; macro-F1, our reported metric, is not a sum of per-input losses, so the rule is accuracy-optimal and only approximately macro-F1-optimal. Transfer of $\hat\rho$ to a new domain $Q$ assumes $P_Q(W\mid D{=}1,z)=P(W\mid D{=}1,z)$; this conditional invariance is the assumption we test.
+
+\paragraph{Adaptation to a new dialect.}
+A router trained on Tunisian data meets a target distribution $Q$ (another corpus or dialect). Re-estimating $\pi_Q$ on unlabeled target text is label-free; whether this suffices depends on the stability of $\rho$ across domains, which we test rather than assume (\S\ref{sec:results}).
+When $\rho$ shifts, we model $\rho_Q(z)=\sigma\big(\operatorname{logit}\rho(z)+b\big)$ and estimate the scalar $b$ from $k$ labelled target disagreements.
+
+\begin{proposition}[Label efficiency of disagreement-targeted labelling]
+\label{prop:efficiency}
+Under the model above, with $\pi_Q$ known, the Fisher information about $b$ carried by $k$ target labels drawn at random is $k\,P_Q(D{=}1)\,\mathbb E_Q[\rho_Q(1-\rho_Q)\mid D{=}1]$, and by $k$ labels drawn among disagreements it is $k\,\mathbb E_Q[\rho_Q(1-\rho_Q)\mid D{=}1]$. Targeted labelling is therefore $1/P_Q(D{=}1)$ times more informative.
+\end{proposition}
+The proof (\cref{app:proofs}) is a one-line Fisher-information calculation that uses only that an agreeing example's likelihood does not depend on $b$; it concerns the efficiency of estimating $b$, not the accuracy of the resulting router, which \cref{sec:results} tests. Labelling where predictors disagree is the idea of query-by-committee \citep{seung1992qbc}; here the target of estimation is a routing rule, and \cref{eq:factor} gives the exact reason why only disagreements matter.
+
+\paragraph{Information access.}
+The policy never reads $p_1$ at decision time; $\pi$ and $\rho$ are \emph{predicted} from $z$. Training uses $p_1$ on the policy split only, and adaptation uses $p_1$ on unlabeled target text that is disjoint from the evaluated fold. The oracle $g^{\rm or}=\mathbf 1[e_0{=}1\wedge e_1{=}0]$ reads labels and is reported only as an upper reference: ties and joint errors keep the original view at no cost.

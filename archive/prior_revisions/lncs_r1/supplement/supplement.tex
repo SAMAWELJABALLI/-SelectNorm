@@ -1,0 +1,62 @@
+\documentclass[runningheads]{llncs}
+\usepackage[T1]{fontenc}\usepackage{newtxtext}\usepackage[varvw]{newtxmath}
+\usepackage{graphicx,amsmath,booktabs,multirow,nicefrac}\usepackage[table]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\thetable}{S\arabic{table}}\renewcommand{\thefigure}{S\arabic{figure}}
+\newcommand{\Tcons}{T_{\rm cons}}
+\begin{document}
+\title{SelectNorm: Supplementary Tables}
+\author{[AUTHOR NAME(S)]}\institute{[AFFILIATION]}
+\maketitle
+\noindent Supplementary material for ``SelectNorm: A Disagreement-Factorized Analysis of Per-Input Normalization for Arabizi with Frozen Encoders'' (ACIIDS 2027). Values are copied unchanged from the archived tables; table and figure numbers in the main paper refer to that paper.
+
+\begin{table}[!htb]\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\caption{Paired differences in macro-F1 (SelectNorm-adapt minus baseline, $\lambda=0$, seed-averaged) with 95\% paired-bootstrap intervals (10{,}000 resamples of test sentences). $^{*}$: Holm-corrected $p<0.05$ over the protocol's 20 comparisons per encoder. $^{\dagger}$: the interval lies inside $(-1,+1)$, the protocol's relevance margin; reading this as equivalence is post hoc and not corrected for multiplicity. Intervals without either mark are inconclusive about both difference and equivalence.}
+\resizebox{\textwidth}{!}{\input{../tables/paired}}\end{table}
+
+\begin{table}[!htb]\centering\scriptsize\setlength{\tabcolsep}{3.5pt}
+\caption{As Table~2 of the paper, with $f$ also trained on synthetic Latin renderings (\textsc{+syn}, exploratory regime).}
+\resizebox{\textwidth}{!}{\input{../tables/main_syn}}\end{table}
+
+\begin{table}[!htb]\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Routing behaviour (mE5, $\lambda=0$): selection rate, harmful transformations per 100 inputs, share of oracle opportunities captured, and estimated cost relative to B0. Help/harm: number of inputs where normalisation corrects/introduces an error.}
+\resizebox{\textwidth}{!}{\input{../tables/routing}}\end{table}
+
+\begin{table}[!htb]\centering\scriptsize\setlength{\tabcolsep}{4pt}
+\caption{95\% intervals for the mechanism measurements of Table~3 of the paper (1{,}000 bootstrap resamples of test sentences, seed-averaged within each resample; estimators not refitted).}
+\resizebox{\textwidth}{!}{\input{../tables/mechanism_ci}}\end{table}
+
+\begin{table}[!htb]\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\caption{Sensitivity of the oracle reference (range over the four sets). ``Views headroom'': oracle over $x$ and $T(x)$ minus the best view; other columns: the same for two classifiers differing only in their training sample (bootstrap as in Table~3 of the paper, 80\%/50\% subsamples, or bootstrap with $C\times3$ or $C/3$), applied to $x$; mean of 10 pairs.}
+\resizebox{\textwidth}{!}{\input{../tables/noise_sensitivity}}\end{table}
+
+\begin{table}[!htb]\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\caption{Net effect of always normalising (help minus harm per 100 inputs) by input condition, mean over the four encoders, range in brackets. Conditions were fixed before inspection.}
+\resizebox{\textwidth}{!}{\input{../tables/taxonomy}}\end{table}
+
+\begin{table}[!htb]\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Ablations (mE5, $\lambda=0$, macro-F1, mean of five seeds). Rows with ``always'' are B1 with that normaliser.}
+\input{../tables/ablation}\end{table}
+
+\begin{table}[!htb]\centering\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Normaliser accuracy against human Arabic-script transliterations: \emph{development} results, not an independent test. TArC: 20\% of sentences, not used for the lexicon $\mathcal L$ but used to design the safeguards. NArabizi: whole corpus, nothing fitted to it, but scored during development. ``Foreign kept'': precision/recall of keeping annotated French/English tokens in Latin script; negation: accuracy on circumfix-negated verbs. Audit: no hand-listed word occurs only in the development split; on the 87\% of tokens no rule touches, word accuracy is 65.8\%; with the splits' roles swapped, negation is kept in 94.4\% and foreign precision/recall is 95/77.}
+\resizebox{\textwidth}{!}{\input{../tables/intrinsic}}\end{table}
+
+\begin{figure}[!htb]\centering
+\includegraphics[width=\textwidth]{../figures/fewlabel.pdf}
+\caption{Few-label adaptation (mE5): macro-F1 against the number $k$ of labelled target sentences (5 draws $\times$ 5 seeds; error bars: s.d.). Dashed: B0; dotted: B1. ``Set-level choice'' picks B0 or B1 by accuracy on the $k$ labels.}
+\end{figure}
+\clearpage
+\section*{Implementation details}
+\paragraph{Encoders and software.} Encoders are loaded at pinned revisions with SHA-256-verified weights: XLM-R base \texttt{e73636d} (MIT), mE5 base \texttt{d128750} (MIT), LaBSE \texttt{836121a} (Apache-2.0), MARBERTv2 \texttt{fe88db9} (no licence stated). Representations: mean of the last layer over non-padding tokens, at most 128 subwords, $\ell_2$-normalised; mE5 inputs carry \texttt{query:}. Python 3, scikit-learn 1.9.1, NumPy 2.5.3; code, configuration, logs and the protocol are released.
+
+\paragraph{Classifier $f$.} $\ell_2$-regularised logistic regression; $C\in\{0.01,0.03,\ldots,100\}$ selected by macro-F1 on TSAC-\textsc{ar} dev; temperature fitted on the same split by NLL. The \textsc{+syn} regime adds the synthetic Latin rendering $G(x)$ of every training and dev sentence.
+
+\paragraph{Router.} $\hat\pi,\hat\rho$: logistic regression on standardised $z$ ($C=1$); 17 features: confidence, margin and entropy of $p_0$ (\textsc{conf}); length, Latin and Arabic shares, digit-as-letter, emoji and upper-case rates (\textsc{script}); lexicon, rule-fallback, ambiguity, protected, negation, laughter and changed-token rates and lexicon entropy of $T$ (\textsc{trel}). Policy split 80/20 of TSAC-\textsc{lat} train with seed $1000+s$; the 20\% part tunes thresholds. 
+
+\paragraph{Few-label audit.} \texttt{check\_fewlabel.py} replays every targeted and random label draw of all eight encoder--regime runs (8{,}000 draws), saves the sampled source identifiers, and counts any sampled label from the scored fold, any shared source identifier or normalised text between sampled and scored sentences, and any targeted sentence that is not a disagreement: none. A rerun of \texttt{adapt.py} for mE5 with index logging matches the replay in all 1{,}000 draws and the archived results in all 2{,}500 rows. In 375 targeted draws ($S_5$, $k{=}128$) fewer than $k$ disagreements were available.
+
+\paragraph{Per-example exports.} \texttt{results/export/per\_example} gives, per encoder, regime and set, sentence and source identifiers, labels, both views' probabilities and every system's $\lambda{=}0$ prediction per seed. \texttt{scripts/reproduce\_stats.py} (NumPy and pandas only) recomputes from them every difference, interval and $p$-value of Table~2 of the paper and Table~S1 for all four encoders exactly.
+
+\paragraph{Costs.} $c_T$ is the measured normaliser time (about 0.4\% of a pass). $c_0,c_1$ are \emph{estimated} per sentence by a per-encoder model $a+b\cdot$tokens fitted to measured batch-1 latencies of 300 sentences per set and view (e.g.\ mE5 $a=19.6$\,ms, $b=0.32$\,ms/token, $R^2=0.68$), as used in Fig.~2 of the paper and Table~S3. \texttt{measured\_cost.py} runs the deployed pipeline on raw text at batch size 1 with nothing cached (pinned encoder, the trained head refitted deterministically, which reproduces the cached probabilities exactly, normaliser, features, each seed's router and $\lambda{=}0$ threshold, second pass only when selected). On all 9{,}220 test sentences, none of the 184{,}400 live routing decisions (4 encoders $\times$ 5 seeds) or final predictions differs from the archived ones (probabilities within $1.6\cdot10^{-4}$). Timed back to back on 200 sentences per set: B0 22--31\,ms; relative costs within $-0.02$ to $+0.05$ of the estimates for B1 and R, $+0.03$ to $+0.07$ for SelectNorm (features are not in the token model). mE5 was re-timed after a concurrent job overlapped it (both runs archived).
+\end{document}

@@ -1,0 +1,236 @@
+{
+ "n_train_sentences": 3838,
+ "n_heldout_sentences": 960,
+ "split_matches_saved_ids": true,
+ "hand_items": {
+  "a": {
+   "train": 93,
+   "heldout": 30
+  },
+  "de": {
+   "train": 240,
+   "heldout": 52
+  },
+  "des": {
+   "train": 85,
+   "heldout": 28
+  },
+  "el": {
+   "train": 508,
+   "heldout": 124
+  },
+  "en": {
+   "train": 78,
+   "heldout": 22
+  },
+  "et": {
+   "train": 171,
+   "heldout": 44
+  },
+  "fi": {
+   "train": 321,
+   "heldout": 98
+  },
+  "il": {
+   "train": 95,
+   "heldout": 17
+  },
+  "ki": {
+   "train": 108,
+   "heldout": 23
+  },
+  "la": {
+   "train": 236,
+   "heldout": 44
+  },
+  "le": {
+   "train": 158,
+   "heldout": 50
+  },
+  "lee": {
+   "train": 0,
+   "heldout": 0
+  },
+  "les": {
+   "train": 190,
+   "heldout": 31
+  },
+  "li": {
+   "train": 91,
+   "heldout": 18
+  },
+  "lé": {
+   "train": 23,
+   "heldout": 4
+  },
+  "ma": {
+   "train": 139,
+   "heldout": 39
+  },
+  "mahech": {
+   "train": 1,
+   "heldout": 0
+  },
+  "mahich": {
+   "train": 4,
+   "heldout": 0
+  },
+  "mahouch": {
+   "train": 1,
+   "heldout": 2
+  },
+  "mais": {
+   "train": 58,
+   "heldout": 17
+  },
+  "manech": {
+   "train": 1,
+   "heldout": 0
+  },
+  "manich": {
+   "train": 5,
+   "heldout": 3
+  },
+  "mech": {
+   "train": 4,
+   "heldout": 3
+  },
+  "men": {
+   "train": 103,
+   "heldout": 31
+  },
+  "mich": {
+   "train": 13,
+   "heldout": 0
+  },
+  "moch": {
+   "train": 20,
+   "heldout": 2
+  },
+  "mouch": {
+   "train": 38,
+   "heldout": 10
+  },
+  "w": {
+   "train": 753,
+   "heldout": 191
+  },
+  "ya": {
+   "train": 155,
+   "heldout": 31
+  }
+ },
+ "hand_items_heldout_only": [],
+ "hand_items_absent_from_tarc": [
+  "lee"
+ ],
+ "heldout": {
+  "rule": {
+   "all": {
+    "n_arabizi": 5563,
+    "n_foreign": 2189,
+    "arabizi_word_acc": 0.36275390976092037,
+    "arabizi_cer": 0.2754588832050896,
+    "arabizi_wrongly_kept": 0.0,
+    "foreign_recall": 0.0,
+    "foreign_precision": 0.0
+   },
+   "rule_free": {
+    "n_arabizi": 4859,
+    "n_foreign": 1845,
+    "arabizi_word_acc": 0.30500102901831655,
+    "arabizi_cer": 0.284781008465219,
+    "arabizi_wrongly_kept": 0.0,
+    "foreign_recall": 0.0,
+    "foreign_precision": 0.0
+   },
+   "n_rule_touched": 1048,
+   "negation": {
+    "n_negation": 103,
+    "negation_preserved": 0.2912621359223301
+   }
+  },
+  "lex": {
+   "all": {
+    "n_arabizi": 5563,
+    "n_foreign": 2189,
+    "arabizi_word_acc": 0.6951285277727844,
+    "arabizi_cer": 0.13201220822765766,
+    "arabizi_wrongly_kept": 0.0,
+    "foreign_recall": 0.0,
+    "foreign_precision": 0.0
+   },
+   "rule_free": {
+    "n_arabizi": 4859,
+    "n_foreign": 1845,
+    "arabizi_word_acc": 0.6620703848528504,
+    "arabizi_cer": 0.13696172248803828,
+    "arabizi_wrongly_kept": 0.0,
+    "foreign_recall": 0.0,
+    "foreign_precision": 0.0
+   },
+   "n_rule_touched": 1048,
+   "negation": {
+    "n_negation": 103,
+    "negation_preserved": 0.5436893203883495
+   }
+  },
+  "cons": {
+   "all": {
+    "n_arabizi": 5563,
+    "n_foreign": 2189,
+    "arabizi_word_acc": 0.6908143088261729,
+    "arabizi_cer": 0.13846021579331985,
+    "arabizi_wrongly_kept": 0.011324824734855294,
+    "foreign_recall": 0.7871174052078574,
+    "foreign_precision": 0.9647256438969765
+   },
+   "rule_free": {
+    "n_arabizi": 4859,
+    "n_foreign": 1845,
+    "arabizi_word_acc": 0.6577485079234411,
+    "arabizi_cer": 0.14390872285609127,
+    "arabizi_wrongly_kept": 0.008232146532208273,
+    "foreign_recall": 0.8037940379403794,
+    "foreign_precision": 0.9737360472751149
+   },
+   "n_rule_touched": 1048,
+   "negation": {
+    "n_negation": 103,
+    "negation_preserved": 0.9611650485436893
+   }
+  }
+ },
+ "swapped": {
+  "lex": {
+   "all": {
+    "n_arabizi": 21909,
+    "n_foreign": 8748,
+    "arabizi_word_acc": 0.6043178602400839,
+    "arabizi_cer": 0.17667298186015112,
+    "arabizi_wrongly_kept": 0.0,
+    "foreign_recall": 0.0,
+    "foreign_precision": 0.0
+   },
+   "negation": {
+    "n_negation": 464,
+    "negation_preserved": 0.4956896551724138
+   }
+  },
+  "cons": {
+   "all": {
+    "n_arabizi": 21909,
+    "n_foreign": 8748,
+    "arabizi_word_acc": 0.5982016522890137,
+    "arabizi_cer": 0.186407090437926,
+    "arabizi_wrongly_kept": 0.015244876534757406,
+    "foreign_recall": 0.7665752171925011,
+    "foreign_precision": 0.9525568181818181
+   },
+   "negation": {
+    "n_negation": 464,
+    "negation_preserved": 0.9439655172413793
+   }
+  }
+ }
+}

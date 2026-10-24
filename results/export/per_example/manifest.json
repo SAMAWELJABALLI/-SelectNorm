@@ -1,0 +1,165 @@
+{
+ "note": "Export per-example predictions needed to re-run the paper's statistical tests independently.\n\nFor every backend and test set: one CSV (gzip) with one row per test sentence and columns\n  id, src_id, label, p_orig, p_norm, and yhat__<system>__s<seed> for every system/seed whose\n  route was saved at lambda = 0 (main tag),\nplus manifest.json (backends, sets, systems, seeds, row counts, sha256 of each file). Texts are\nnot exported (several corpora carry no redistribution licence); `id` is the row of\ndata/prepared/<set>.jsonl, which src/data/prepare.py rebuilds deterministically from the raw\ncorpora at the commits listed in the paper. Output: results/export/per_example/\n",
+ "files": {
+  "enc_FacebookAI__xlm-roberta-base/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "b0c29037fd4a52655504336162541ed4307efb00d83525871921691007c1c6e9"
+  },
+  "enc_FacebookAI__xlm-roberta-base/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "f520bc5ff6646e4cc040cb7c6d88bf5bf2c863e14a11187419b8caae969c5863"
+  },
+  "enc_FacebookAI__xlm-roberta-base/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "c1cbdc596c75a7cd8560ac3b9c84d52f29890d0300a1b5e777011e4eeb62ece5"
+  },
+  "enc_FacebookAI__xlm-roberta-base/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "d30e5ce2bedfbd30b54cfb821084f7aa9dd29c886aaf1272307a1a4245eda123"
+  },
+  "enc_FacebookAI__xlm-roberta-base+syn/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "4be26caa6b70d795d1229daff8b4aeaa2f063c0d834ce1bd0312509937a97378"
+  },
+  "enc_FacebookAI__xlm-roberta-base+syn/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "e9b7eadda855022b31d5629bdca55a24365f90e956675649b7e08b14d8618a64"
+  },
+  "enc_FacebookAI__xlm-roberta-base+syn/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "f2199bb6f8ed8018566553a5a2a955113fafe9045941141fe640f6e99142743e"
+  },
+  "enc_FacebookAI__xlm-roberta-base+syn/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "faf1f5fc6db0a9e744f778add35e0dc45853e310d3f4d0ac8d071bc8618176e8"
+  },
+  "enc_UBC-NLP__MARBERTv2/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "a6324550188d923262e4f8ba58a661d4b4a6ac5d11f36a328314f6a76045ab9d"
+  },
+  "enc_UBC-NLP__MARBERTv2/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "9d8e92b654eac679fef48531adfc6bf6e2d3a59b373441e08fba875c08690bef"
+  },
+  "enc_UBC-NLP__MARBERTv2/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "bea7ed56ca8781678a7e6c564f72383515a07d10b28f4819181122988d8baf73"
+  },
+  "enc_UBC-NLP__MARBERTv2/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "bfd674328b884036a0f924d4d3a6236559ab921ca659722bf4f93db6f78069a8"
+  },
+  "enc_UBC-NLP__MARBERTv2+syn/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "70fc66b308d9e4e208be9befcca7c379969c2178f77286543f4989f095e018c6"
+  },
+  "enc_UBC-NLP__MARBERTv2+syn/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "b34e37b2c7bfc909f1cd753a019f19fe1b4e544aa6f589a2eb18bb878b493840"
+  },
+  "enc_UBC-NLP__MARBERTv2+syn/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "f9b6744cbc0ada413610f9cec4710a62ce46b74f02b1d861d828c737c491b75d"
+  },
+  "enc_UBC-NLP__MARBERTv2+syn/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "80dfd1b275837d4ed21f9511070496d1b37d00c5ef6c3f6da41bd8f93e1aa6df"
+  },
+  "enc_intfloat__multilingual-e5-base/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "b6580f57829d3ae0ff9c167fd12f2f5c983f05ddce61f151b929c7774e144090"
+  },
+  "enc_intfloat__multilingual-e5-base/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "928250b0da8d9f6806ad8a1b503fe93473932ddaec8ef2aa22821cfa1912d75a"
+  },
+  "enc_intfloat__multilingual-e5-base/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "a31f0db2bc933533740fbb9608b6804bbc2c69ca4a15c9479fe2ff190c519b1b"
+  },
+  "enc_intfloat__multilingual-e5-base/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "f0be41dc2814dcaadfb50e8ef44c96df49f3b989018efa2a70c59a44e2a2cc48"
+  },
+  "enc_intfloat__multilingual-e5-base+syn/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "c8c38ab8eb5151417370712aab536b3f1b2509624779c749be7e99bb5ba3083a"
+  },
+  "enc_intfloat__multilingual-e5-base+syn/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "db0954eb8aca54382c1ccd90dab406e69ac5e051c846e397340d76b62520e959"
+  },
+  "enc_intfloat__multilingual-e5-base+syn/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "2d67dffd8457c49018596267e029f2aa4736ddcfeb3b6dede54df18b2c4166ea"
+  },
+  "enc_intfloat__multilingual-e5-base+syn/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "e58ab3d425b1953db7d5d986489e8a90a8a68f133eec549e36eb300c29303135"
+  },
+  "enc_sentence-transformers__LaBSE/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "1cd53ed696457bc1b4dad14d3cc30ecc28013d9c33460f30017c463e9dde5287"
+  },
+  "enc_sentence-transformers__LaBSE/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "ddf831c82d17d0b0292b6f0813fd88ea8e962da26f7068fffbb855d10066de91"
+  },
+  "enc_sentence-transformers__LaBSE/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "d2b2e865b9906e06229cff9aef7720ff997c8e5589bc48c3ff3f4baa648f4d94"
+  },
+  "enc_sentence-transformers__LaBSE/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "a6ff457053c187a38e7e9fdb82507073ee5445e5766d82c85acfb0eb6e662bda"
+  },
+  "enc_sentence-transformers__LaBSE+syn/S3_tsac_lat.csv.gz": {
+   "rows": 1425,
+   "columns": 75,
+   "sha256": "5ede07449644fbc08650d16ae11d22f6f2c8d919a49f103f9b58f5cbc4eca7f6"
+  },
+  "enc_sentence-transformers__LaBSE+syn/S4_tunizi.csv.gz": {
+   "rows": 2875,
+   "columns": 75,
+   "sha256": "a53251e693589e448d389d8fd396769980dfc31f428592630c24199d42bf196a"
+  },
+  "enc_sentence-transformers__LaBSE+syn/S5_narabizi.csv.gz": {
+   "rows": 729,
+   "columns": 75,
+   "sha256": "f6d541091ee6d357c3aa6982af5ef9d27d6655b7bf38479c00e46b942b3972d9"
+  },
+  "enc_sentence-transformers__LaBSE+syn/S6_myc_lat.csv.gz": {
+   "rows": 4191,
+   "columns": 75,
+   "sha256": "0387993d7457f00e570484d7fd2c41cd2e25195a389f8bbc4af3b5581032fa96"
+  }
+ }
+}

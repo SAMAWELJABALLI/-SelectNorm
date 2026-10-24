@@ -1,0 +1,7 @@
+{
+ "backend": "enc:UBC-NLP/MARBERTv2",
+ "syn": true,
+ "C": 100,
+ "dev_macro_f1": 0.8422908084014318,
+ "temperature": 0.7170115168856053
+}

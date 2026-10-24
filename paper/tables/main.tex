@@ -1,0 +1,33 @@
+\begin{tabular}{@{}lrrrrrrrr@{}}\toprule
+ & \multicolumn{4}{c}{\textbf{mE5}} & \multicolumn{4}{c}{\textbf{XLM-R}}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+ & $S_3$ & $S_4$ & $S_5$ & $S_6$ & $S_3$ & $S_4$ & $S_5$ & $S_6$\\\midrule
+B0 original & 63.4$^{\triangledown}$ & 61.5$^{\triangledown}$ & 63.6$^{\triangledown}$ & \textbf{54.1} & 54.5$^{\triangledown}$ & 48.8$^{\triangledown}$ & 48.6$^{\triangledown}$ & 63.5$^{\triangledown}$\\
+B1 always normalise & \textbf{82.0} & \textbf{67.2} & 69.4 & 52.9 & 72.8 & \textbf{64.5} & 63.1 & 72.3$^{\blacktriangle}$\\
+B2 random, matched rate & 80.0 & 66.5 & 68.5 & 53.2 & 70.2 & 63.3 & 61.9 & 68.9\\
+B3 confidence threshold & 82.0 & 67.2 & 69.4 & 52.9 & 72.9 & 64.4 & 63.0 & \textbf{72.3}$^{\blacktriangle}$\\
+B4 direct gain & 81.4 & 67.0 & 69.9 & 53.6 & 73.5 & 63.9 & 63.3 & 68.7\\
+B4b per-view loss & 81.6 & 67.1 & 69.9 & 53.7 & \textbf{73.9} & 63.9 & \textbf{63.4} & 68.2\\
+SelectNorm-src & 81.3 & 67.0 & \textbf{70.0} & 53.7 & 73.8 & 63.8 & 63.4$^{\blacktriangle}$ & 68.0$^{\triangledown}$\\
+\rowcolor{black!6}SelectNorm-adapt & 81.3 & 66.9 & 69.8 & 53.7 & 73.8 & 63.8 & 63.1 & 68.5\\
+\quad Bayes threshold $\lambda\bar c$ & 81.4 & 66.9 & 69.6 & 53.5 & 73.9 & 64.0 & 63.4 & 69.0\\
+\addlinespace[2pt]
+R two-view ensemble$^\dagger$ & 78.9 & 66.5 & 69.7 & 54.4 & 67.3 & 57.2 & 54.7 & 69.7\\
+B6 oracle$^\ddagger$ & 90.0 & 81.3 & 81.8 & 63.8 & 83.1 & 75.2 & 70.4 & 82.1\\
+\midrule[\heavyrulewidth]
+ & \multicolumn{4}{c}{\textbf{LaBSE}} & \multicolumn{4}{c}{\textbf{MARBERTv2}}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+ & $S_3$ & $S_4$ & $S_5$ & $S_6$ & $S_3$ & $S_4$ & $S_5$ & $S_6$\\\midrule
+B0 original & 69.6$^{\triangledown}$ & 61.1$^{\triangledown}$ & 65.6$^{\triangledown}$ & \textbf{63.4}$^{\blacktriangle}$ & 64.3$^{\triangledown}$ & 62.4$^{\triangledown}$ & 60.0 & 52.5$^{\triangledown}$\\
+B1 always normalise & 83.6 & \textbf{69.1} & 70.9 & 55.5$^{\triangledown}$ & 82.1 & 67.7 & 62.3 & 58.3\\
+B2 random, matched rate & 81.0 & 67.3 & 69.5 & 60.4 & 79.9 & 67.3 & 61.9 & 56.7\\
+B3 confidence threshold & 83.7 & 69.1 & 70.9 & 55.9$^{\triangledown}$ & \textbf{82.3} & 68.1 & 62.3 & \textbf{58.3}\\
+B4 direct gain & 83.4 & 68.6 & 71.6 & 60.6 & 82.1 & 68.2 & \textbf{63.0} & 57.6\\
+B4b per-view loss & 83.3 & 68.9 & \textbf{71.6} & 60.5 & 82.1 & 68.1 & 62.8 & 57.6\\
+SelectNorm-src & 83.4 & 68.7 & 71.1 & 60.4$^{\triangledown}$ & 82.2 & 68.3 & 62.9 & 57.7\\
+\rowcolor{black!6}SelectNorm-adapt & 83.4 & 68.8 & 71.5 & 60.9 & 82.1 & \textbf{68.3} & 62.9 & 57.7\\
+\quad Bayes threshold $\lambda\bar c$ & \textbf{83.7} & 68.8 & 71.3 & 60.8 & 82.2 & 68.1 & 62.5 & 57.9\\
+\addlinespace[2pt]
+R two-view ensemble$^\dagger$ & 81.7 & 68.4 & 72.1 & 60.5 & 82.3 & 69.7 & 62.4 & 58.4\\
+B6 oracle$^\ddagger$ & 91.5 & 82.2 & 85.7 & 75.2 & 93.6 & 84.2 & 77.6 & 70.4\\
+\bottomrule\end{tabular}

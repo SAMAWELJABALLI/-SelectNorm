@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "This is an unpublished manuscript under preparation for ACIIDS 2027. If you use this software or the archived evidence, please cite it as below. The author list is a placeholder until the authors complete it."
+title: "SelectNorm: research code and evidence for disagreement-factorized per-input normalization of Arabizi"
+type: software
+authors:
+  - name: "[AUTHOR NAME(S)]"
+license: MIT
+repository-code: "[GITHUB_REPOSITORY_URL]"
+keywords: [Arabizi, transliteration, selective normalization, learning to defer, frozen encoders, dialect transfer]
+preferred-citation:
+  type: unpublished
+  title: "SelectNorm: A Disagreement-Factorized Analysis of Per-Input Normalization for Arabizi with Frozen Encoders"
+  authors:
+    - name: "[AUTHOR NAME(S)]"
+  notes: "Unpublished manuscript, revision R3, prepared for ACIIDS 2027 (Springer LNCS)."
+  year: 2026

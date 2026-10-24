@@ -1,0 +1,7 @@
+{
+ "backend": "enc:sentence-transformers/LaBSE",
+ "syn": false,
+ "C": 10,
+ "dev_macro_f1": 0.8969279661016949,
+ "temperature": 0.829539394538787
+}

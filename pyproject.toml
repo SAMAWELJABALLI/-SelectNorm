@@ -1,0 +1,23 @@
+[project]
+name = "selectnorm"
+version = "0.3.0"
+description = "Research code and evidence for disagreement-factorized per-input normalization of Arabizi with frozen encoders (unpublished manuscript, R3)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT (code only; see LICENSE)" }
+dependencies = ["numpy", "pandas", "scipy", "scikit-learn", "matplotlib", "wordfreq"]
+
+[project.optional-dependencies]
+encoders = ["torch", "transformers", "tokenizers", "safetensors", "huggingface_hub"]
+test = ["pytest", "ruff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+extend-exclude = ["paper", "archive", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]  # syntax errors and undefined names; inherited research code is not restyled

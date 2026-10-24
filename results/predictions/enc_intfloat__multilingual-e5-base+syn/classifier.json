@@ -1,0 +1,7 @@
+{
+ "backend": "enc:intfloat/multilingual-e5-base",
+ "syn": true,
+ "C": 10,
+ "dev_macro_f1": 0.8620212970604327,
+ "temperature": 0.7155812320945815
+}

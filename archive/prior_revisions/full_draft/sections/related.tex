@@ -1,0 +1,14 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Deferral, cascades and routing.}
+Selective classification abstains when confidence is low \citep{geifman2017selective,geifman2019selectivenet}; learning to defer trains a classifier and a deferral rule jointly \citep{mozannar2020defer}. Closest to our setting are post-hoc cascade rules: \citet{jitkrittum2023cascade} show that confidence-based deferral is optimal only when the second stage's errors are uniform and propose estimating the gain of deferring directly, and \citet{gupta2024cascades} learn deferral from token-level uncertainty. LLM routers learn which model to query from preference data \citep{ong2025routellm} or from predicted weak--strong disagreement \citep{noorani2026disagreement}. These methods choose between \emph{models}; SelectNorm keeps one frozen model and chooses between two \emph{views} of the input. Its estimator differs from direct gain prediction by factorizing the gain into a label-free disagreement propensity and a label-dependent conditional win rate (\cref{eq:factor}), which determines what can be adapted without labels and where labels are informative.
+
+\paragraph{Selecting input transformations.}
+\citet{kim2020learningloss} predict, from the original image, the loss of each test-time augmentation and apply the best ones; our B4b baseline transfers this idea. \citet{kang2026luar} train an LLM with reinforcement learning to decide whether to translate a query before reasoning. Translate-test is usually chosen per task rather than per input \citep{artetxe2023revisiting}. None of these works studies the transfer of the selection rule across dialects.
+
+\paragraph{Transliteration and dialect normalization.}
+Transliterating unseen scripts can help multilingual encoders \citep{muller2021unseen,moosa2023transliteration}, and Arabizi has been converted to Arabic script with rules, lexicons and sequence models \citep{darwish2014arabizi,shazal2020unified}. Dialect normalization maps dialectal text to a standard variety with rules and LLMs \citep{dimakis2025dialect} or with dialect identification \citep{alhafni2024exploiting}, and DialUp adapts models to dialect continua and dialect data to models \citep{bafna2025dialup}; \citet{toughrai2025modeling} model North African dialects from standard languages. These approaches transform all inputs. SelectNorm treats the transformation as an action whose benefit is estimated per input and can be withheld.
+
+\paragraph{Using disagreement without labels.}
+Agreement between predictors has been used to estimate accuracy on unlabeled data \citep{platanios2014estimating,garg2022atc}, and querying labels where predictors disagree is the principle of query-by-committee \citep{seung1992qbc}. We use disagreement between two views of the same input to separate the label-free and label-dependent parts of a routing rule.
